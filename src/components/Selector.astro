@@ -1,0 +1,118 @@
+---
+interface Props {
+  name: string;
+  href: string;
+}
+
+const { name, href } = Astro.props;
+---
+
+<style>
+  #selector,
+  #selector-background {
+    position: absolute;
+    clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+    transition-property: clip-path;
+    transition-duration: 200ms;
+    transition-timing-function: linear;
+    z-index: 10;
+  }
+
+  #selector {
+    background-color: #663399;
+  }
+
+  #selector-background {
+    background-color: #669933;
+  }
+</style>
+
+<astro-selector>
+  <div id="selector-background" class="z-10"></div>
+  <div id="selector" class="z-10"></div>
+  <a href={href} class="z-50 relative">{name}</a>
+</astro-selector>
+
+<script>
+  class AstroSelector extends HTMLElement {
+    constructor() {
+      super();
+
+      const selectors = this.getElementsByTagName("div");
+      const link = this.querySelector("a");
+
+      if (!link) {
+        throw new Error("Selected link not found");
+      }
+
+      function assignCoordinates() {
+        for (const selector of selectors) {
+          selector.style.clipPath = newCoordinates();
+        }
+      }
+
+      link.addEventListener("mouseover", showSelector);
+      link.addEventListener("mouseout", hideSelector);
+
+      function setPosition() {
+        if (!link) {
+          throw new Error("Selected link not found");
+        }
+        const { top, left, width, height } = link.getBoundingClientRect();
+        const offsetX = width * 0.5;
+        const offsetY = height * 0.5;
+        for (const selector of selectors) {
+          selector.style.left = `${Math.floor(left) - offsetX / 2}px`;
+          selector.style.width = `${Math.floor(width) + offsetX}px`;
+          selector.style.height = `${Math.floor(height) + offsetY}px`;
+        }
+      }
+
+      setPosition();
+
+      function showSelector() {
+        if (!link) {
+          throw new Error("Selected link not found");
+        }
+
+        for (const selector of selectors) {
+          selector.addEventListener("transitionend", assignCoordinates);
+        }
+        assignCoordinates();
+        link.style.color = "white";
+      }
+
+      function hideSelector() {
+        if (!link) {
+          throw new Error("Selected link not found");
+        }
+
+        for (const selector of selectors) {
+          selector.removeEventListener("transitionend", assignCoordinates);
+          selector.style.clipPath = "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)";
+        }
+        link.style.color = "";
+      }
+
+      function newCoordinates() {
+        function randomNumberWithin20() {
+          return Math.floor(Math.random() * 15);
+        }
+        let coord = [];
+        for (let i = 0; i < 8; i++) {
+          coord.push(randomNumberWithin20());
+        }
+        return `polygon(
+        ${coord[0]}% ${coord[1]}%,
+        ${coord[2] + 85}% ${coord[3]}%,
+        ${coord[4] + 85}% ${coord[5] + 85}%,
+        ${coord[6]}% ${coord[7] + 85}%
+    )`;
+      }
+
+      window.addEventListener("resize", setPosition);
+    }
+  }
+
+  customElements.define("astro-selector", AstroSelector);
+</script>
