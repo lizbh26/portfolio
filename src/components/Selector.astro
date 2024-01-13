@@ -58,7 +58,7 @@ const { name, href } = Astro.props;
         if (!link) {
           throw new Error("Selected link not found");
         }
-        const { top, left, width, height } = link.getBoundingClientRect();
+        const { left, width, height } = link.getBoundingClientRect();
         const offsetX = width * 0.5;
         const offsetY = height * 0.5;
         for (const selector of selectors) {
@@ -103,11 +103,11 @@ const { name, href } = Astro.props;
           coord.push(randomNumberWithin20());
         }
         return `polygon(
-        ${coord[0]}% ${coord[1]}%,
-        ${coord[2] + 85}% ${coord[3]}%,
-        ${coord[4] + 85}% ${coord[5] + 85}%,
-        ${coord[6]}% ${coord[7] + 85}%
-    )`;
+          ${coord[0]}% ${coord[1]}%,
+          ${coord[2] + 85}% ${coord[3]}%,
+          ${coord[4] + 85}% ${coord[5] + 85}%,
+          ${coord[6]}% ${coord[7] + 85}%
+        )`;
       }
 
       window.addEventListener("resize", setPosition);
