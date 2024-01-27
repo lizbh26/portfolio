@@ -30,7 +30,7 @@ const { name, href } = Astro.props
 <astro-navbar-selector data-href={href}>
 	<div class="selector-background z-10"></div>
 	<div class="selector z-10"></div>
-	<a href=`/portfolio${href}` class="relative z-20">{name}</a>
+	<a href=`/portfolio/${href}` class="relative z-20">{name}</a>
 </astro-navbar-selector>
 
 <script>
@@ -112,7 +112,7 @@ const { name, href } = Astro.props
 				const is_mobile = window.screen.width < 640
 				const current_link = new URL(
 					window.location.href,
-				).pathname.split('/portfolio')[1]
+				).pathname.split('/portfolio/')[1]
 				const is_current_link = current_link === link_href
 
 				if (is_mobile) {

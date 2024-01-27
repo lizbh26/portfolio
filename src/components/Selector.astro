@@ -29,7 +29,7 @@ const { name, href } = Astro.props
 <astro-selector>
 	<div class="selector-background z-10"></div>
 	<div class="selector z-10"></div>
-	<a href={href} class="relative z-20">{name}</a>
+	<a href=`/portfolio/${href}` class="relative z-20">{name}</a>
 </astro-selector>
 
 <script>
@@ -53,14 +53,13 @@ const { name, href } = Astro.props
 			function setPosition() {
 				const { left, width, height, top } =
 					link.getBoundingClientRect()
-				console.log(left, width, height, top)
 				const offsetX = width * 0.5
 				const offsetY = height * 0.8
 				for (const selector of selectors) {
 					selector.style.left = `${Math.floor(left) - offsetX / 2}px`
 					selector.style.width = `${Math.floor(width) + offsetX}px`
 					selector.style.height = `${Math.floor(height) + offsetY}px`
-					selector.style.top = `${Math.floor(top) + offsetY}px`
+					selector.style.top = `${Math.floor(top) - offsetY / 2}px`
 				}
 			}
 
