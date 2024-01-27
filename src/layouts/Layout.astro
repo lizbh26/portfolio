@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+import Navbar from "../components/Navbar.astro";
+---
+
+<style>
+  body {
+    font-family: "Salsa", cursive;
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Luckiest+Guy&family=Salsa&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <body class="bg-black text-white h-[200svh]">
+    <Navbar />
+    <slot />
+  </body>
+</html>

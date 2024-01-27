@@ -1,0 +1,122 @@
+---
+import Selector from './Selector.astro'
+---
+
+<style>
+	nav {
+		font-family: 'Luckiest Guy', cursive;
+		color: #663399;
+	}
+	option {
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	}
+</style>
+
+<nav
+	class="fixed my-8 flex w-full flex-col bg-black px-8 text-xl transition-all sm:flex-row sm:justify-between"
+>
+	<div
+		class="flex w-full flex-col gap-2 duration-700 sm:w-4/5 sm:flex-row sm:justify-between sm:gap-0 md:w-2/3 lg:w-1/2"
+	>
+		<Selector href="" name="Link one" />
+		<Selector href="about" name="Link two" />
+		<Selector href="projects" name="Link three" />
+		<Selector href="contact-me" name="Link four" />
+	</div>
+
+	<div
+		class="mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-auto"
+		id="navbar-menu"
+	>
+		<button class="w-1/2 text-left sm:hidden" id="navbar-button">
+			<span
+				id="navbar-button-icon"
+				class="duration-400 inline-block rotate-180 text-2xl transition-all ease-linear"
+			>
+				▲
+			</span>
+		</button>
+		<div class="w-1/2 text-right sm:w-auto">
+			<select
+				name="languages"
+				id="navbar-languages"
+				class="cursor-pointer bg-black"
+			>
+				<option value="EN" selected>EN</option>
+				<option value="ES">ES</option>
+			</select>
+		</div>
+	</div>
+</nav>
+<div id="navbar-padding" class="transition-all"></div>
+
+<script>
+	let is_navbar_showing = false
+	function handleUndefined(): never {
+		throw new Error('Element not defined')
+	}
+
+	function rotateButton() {
+		if (is_navbar_showing) {
+			$('#navbar-button-icon').css({
+				transform: `rotate(0deg)`,
+			})
+		} else {
+			$('#navbar-button-icon').css({
+				transform: `rotate(180deg)`,
+			})
+		}
+	}
+
+	function hideNavbar() {
+		const navbar_height = $('nav').outerHeight(true) ?? handleUndefined()
+		const button_height =
+			$('#navbar-menu').outerHeight(true) ?? handleUndefined()
+		const navbar_bottom_margin = parseInt(
+			$('nav').css('marginBottom').replace('px', ''),
+		)
+		const offset_height =
+			navbar_height - button_height - navbar_bottom_margin
+
+		$('nav').css({
+			top: `-${offset_height}px`,
+		})
+		$('#navbar-padding').css({
+			height: `${button_height + navbar_bottom_margin}px`,
+		})
+		is_navbar_showing = false
+	}
+
+	function showNavbar() {
+		const navbar_height = $('nav').outerHeight(true) ?? handleUndefined()
+		$('nav').css({
+			top: `0`,
+		})
+		$('#navbar-padding').css({
+			height: `${navbar_height}px`,
+		})
+		is_navbar_showing = true
+	}
+
+	function addNavbarPadding() {
+		const navbar_height = $('nav').outerHeight(true) ?? handleUndefined()
+		$('#navbar-padding').css({
+			height: `${navbar_height}px`,
+		})
+	}
+
+	;(function setup() {
+		const is_mobile = window.screen.width < 640
+		if (!is_mobile) {
+			addNavbarPadding()
+			return
+		}
+
+		hideNavbar()
+		rotateButton()
+
+		$('#navbar-button').on('click', (event) => {
+			is_navbar_showing ? hideNavbar() : showNavbar(), rotateButton()
+		})
+	})()
+</script>
