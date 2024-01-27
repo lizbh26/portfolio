@@ -34,13 +34,18 @@ const { name, href } = Astro.props
 </astro-navbar-selector>
 
 <script>
+	import { COMPUTER_WIDTH_TRESHOLD } from '../stores/device_widths'
 	class AstroNavbarSelector extends HTMLElement {
 		constructor() {
 			super()
 
 			const selectors = this.getElementsByTagName('div')
 			const link = this.querySelector('a') ?? handleLinkNotFound()
-			const link_href = this.dataset.href
+
+			const current_link = new URL(window.location.href).pathname.split(
+				'/portfolio/',
+			)[1]
+			const is_current_link = current_link === this.dataset.href
 
 			function handleLinkNotFound(): never {
 				throw new Error('Selected link not found')
@@ -106,24 +111,23 @@ const { name, href } = Astro.props
           		)`
 			}
 
-			function setup() {
+			function handleResize() {
 				setPosition()
-
-				const is_mobile = window.screen.width < 640
-				const current_link = new URL(
-					window.location.href,
-				).pathname.split('/portfolio/')[1]
-				const is_current_link = current_link === link_href
-
-				if (is_mobile) {
-					if (is_current_link) showSelector()
-					return
+				const is_computer =
+					window.screen.width >= COMPUTER_WIDTH_TRESHOLD
+				if (is_computer) {
+					hideSelector()
+				} else if (is_current_link) {
+					showSelector()
 				}
+			}
 
+			function setup() {
 				link.addEventListener('mouseover', showSelector)
 				link.addEventListener('mouseout', hideSelector)
 
-				$(window).on('resize', setPosition)
+				handleResize()
+				$(window).on('resize', handleResize)
 			}
 
 			setup()

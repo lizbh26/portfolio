@@ -6,6 +6,8 @@ import NavbarSelector from './NavbarSelector.astro'
 	nav {
 		font-family: 'Luckiest Guy', cursive;
 		color: #663399;
+		transition-property: translateY gap;
+		transition-duration: 700ms;
 	}
 	option {
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -13,10 +15,10 @@ import NavbarSelector from './NavbarSelector.astro'
 </style>
 
 <nav
-	class="fixed z-50 flex w-full flex-col bg-black p-8 text-xl transition-all sm:flex-row sm:justify-between"
+	class="fixed z-50 flex w-full flex-col bg-black p-8 text-xl sm:flex-row sm:justify-between"
 >
 	<div
-		class="flex w-full flex-col gap-2 duration-700 sm:w-4/5 sm:flex-row sm:justify-between sm:gap-0 md:w-2/3 lg:w-1/2"
+		class="flex w-full flex-col gap-2 sm:w-4/5 sm:flex-row sm:justify-between sm:gap-0 md:w-2/3 lg:w-1/2"
 	>
 		<NavbarSelector href="" name="Link one" />
 		<NavbarSelector href="about" name="Link two" />
@@ -50,6 +52,7 @@ import NavbarSelector from './NavbarSelector.astro'
 </nav>
 
 <script>
+	import { MOBILE_WIDTH_TRESHOLD } from '../stores/device_widths'
 	let is_navbar_showing = false
 	function handleUndefined(): never {
 		throw new Error('Element not defined')
@@ -90,18 +93,24 @@ import NavbarSelector from './NavbarSelector.astro'
 		is_navbar_showing = true
 	}
 
-	;(function setup() {
-		const is_mobile = window.screen.width < 640
-
-		$('#navbar-button').on('click', (event) => {
-			is_navbar_showing ? hideNavbar() : showNavbar(), rotateButton()
-		})
-
+	function handleResize() {
+		const width = window.screen.width
+		const is_mobile = width < MOBILE_WIDTH_TRESHOLD
 		if (!is_mobile) {
+			showNavbar()
 			return
 		}
 
 		hideNavbar()
+	}
+
+	;(function setup() {
+		$('#navbar-button').on('click', (event) => {
+			is_navbar_showing ? hideNavbar() : showNavbar(), rotateButton()
+		})
 		rotateButton()
+
+		handleResize()
+		$(window).on('resize', handleResize)
 	})()
 </script>

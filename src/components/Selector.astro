@@ -33,6 +33,7 @@ const { name, href } = Astro.props
 </astro-selector>
 
 <script>
+	import { COMPUTER_WIDTH_TRESHOLD } from '../stores/device_widths'
 	class AstroSelector extends HTMLElement {
 		constructor() {
 			super()
@@ -59,7 +60,7 @@ const { name, href } = Astro.props
 					selector.style.left = `${Math.floor(left) - offsetX / 2}px`
 					selector.style.width = `${Math.floor(width) + offsetX}px`
 					selector.style.height = `${Math.floor(height) + offsetY}px`
-					selector.style.top = `${Math.floor(top) - offsetY / 2}px`
+					selector.style.top = `${window.scrollY + Math.floor(top) - offsetY / 2}px`
 				}
 			}
 
@@ -102,20 +103,23 @@ const { name, href } = Astro.props
           		)`
 			}
 
-			function setup() {
+			function handleResize() {
 				setPosition()
-
-				const is_mobile = window.screen.width < 640
-
-				if (is_mobile) {
+				const is_computer =
+					window.screen.width >= COMPUTER_WIDTH_TRESHOLD
+				if (is_computer) {
+					hideSelector()
+				} else {
 					showSelector()
-					return
 				}
+			}
 
+			function setup() {
 				link.addEventListener('mouseover', showSelector)
 				link.addEventListener('mouseout', hideSelector)
 
-				$(window).on('resize', setPosition)
+				handleResize()
+				$(window).on('resize', handleResize)
 			}
 
 			setup()
