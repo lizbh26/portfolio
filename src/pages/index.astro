@@ -1,13 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Selector from '../components/Selector.astro'
 ---
 
 <style>
-	h1 {
-		font-family: 'Caprasimo', serif;
+	#title > p {
+		font-family: 'Salsa', cursive;
 	}
 </style>
 
 <Layout title="Ashley Lizbeth">
-	<h1 class="text-xl">Ashley Lizbeth</h1>
+	<div
+		id="title"
+		class="flex h-screen w-full flex-col items-end justify-center px-8 text-end text-[#996633]"
+	>
+		<h1 class="text-6xl">Ashley Lizbeth</h1>
+		<p class="w-3/4">A developer who cares deeply about her user's needs</p>
+	</div>
+	<Selector href="" name="Test Selector" />
 </Layout>

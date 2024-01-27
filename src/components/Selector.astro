@@ -15,7 +15,6 @@ const { name, href } = Astro.props
 		transition-property: clip-path;
 		transition-duration: 220ms;
 		transition-timing-function: linear;
-		z-index: 10;
 	}
 
 	.selector {
@@ -30,7 +29,7 @@ const { name, href } = Astro.props
 <astro-selector>
 	<div class="selector-background z-10"></div>
 	<div class="selector z-10"></div>
-	<a href={href} class="relative z-50">{name}</a>
+	<a href={href} class="relative z-20">{name}</a>
 </astro-selector>
 
 <script>
@@ -52,14 +51,16 @@ const { name, href } = Astro.props
 			}
 
 			function setPosition() {
-				const { left, width, height } = link.getBoundingClientRect()
+				const { left, width, height, top } =
+					link.getBoundingClientRect()
+				console.log(left, width, height, top)
 				const offsetX = width * 0.5
 				const offsetY = height * 0.8
 				for (const selector of selectors) {
 					selector.style.left = `${Math.floor(left) - offsetX / 2}px`
 					selector.style.width = `${Math.floor(width) + offsetX}px`
 					selector.style.height = `${Math.floor(height) + offsetY}px`
-					selector.style.top = `${-(offsetY / 2)}px`
+					selector.style.top = `${Math.floor(top) + offsetY}px`
 				}
 			}
 
@@ -106,23 +107,16 @@ const { name, href } = Astro.props
 				setPosition()
 
 				const is_mobile = window.screen.width < 640
-				const current_link = new URL(
-					window.location.href,
-				).pathname.split('/portfolio')[1]
-				const target_link = new URL(link.href).pathname.split(
-					'/portfolio',
-				)[1]
-				const is_current_link = current_link === target_link
 
 				if (is_mobile) {
-					if (is_current_link) showSelector()
+					showSelector()
 					return
 				}
 
 				link.addEventListener('mouseover', showSelector)
 				link.addEventListener('mouseout', hideSelector)
 
-				window.addEventListener('resize', setPosition)
+				$(window).on('resize', setPosition)
 			}
 
 			setup()

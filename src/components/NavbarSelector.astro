@@ -1,0 +1,134 @@
+---
+interface Props {
+	name: string
+	href: string
+}
+
+const { name, href } = Astro.props
+---
+
+<style>
+	.selector,
+	.selector-background {
+		position: absolute;
+		clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+		transition-property: clip-path;
+		transition-duration: 220ms;
+		transition-timing-function: linear;
+		z-index: 10;
+	}
+
+	.selector {
+		background-color: #663399;
+	}
+
+	.selector-background {
+		background-color: #669933;
+	}
+</style>
+
+<astro-navbar-selector data-href={href}>
+	<div class="selector-background z-10"></div>
+	<div class="selector z-10"></div>
+	<a href=`/portfolio${href}` class="relative z-20">{name}</a>
+</astro-navbar-selector>
+
+<script>
+	class AstroNavbarSelector extends HTMLElement {
+		constructor() {
+			super()
+
+			const selectors = this.getElementsByTagName('div')
+			const link = this.querySelector('a') ?? handleLinkNotFound()
+			const link_href = this.dataset.href
+
+			function handleLinkNotFound(): never {
+				throw new Error('Selected link not found')
+			}
+
+			function assignCoordinates() {
+				for (const selector of selectors) {
+					selector.style.clipPath = newCoordinates()
+				}
+			}
+
+			function setPosition() {
+				const { left, width, height, top } =
+					link.getBoundingClientRect()
+				const navbar = $('nav').get()[0].getBoundingClientRect()
+				const marginTop = Math.abs(navbar.top - top)
+				const offsetX = width * 0.5
+				const offsetY = height * 0.8
+				for (const selector of selectors) {
+					selector.style.left = `${Math.floor(left) - offsetX / 2}px`
+					selector.style.width = `${Math.floor(width) + offsetX}px`
+					selector.style.height = `${Math.floor(height) + offsetY}px`
+					selector.style.top = `${marginTop - offsetY / 2}px`
+				}
+			}
+
+			function showSelector() {
+				for (const selector of selectors) {
+					selector.addEventListener(
+						'transitionend',
+						assignCoordinates,
+					)
+				}
+				assignCoordinates()
+				link.style.color = 'white'
+			}
+
+			function hideSelector() {
+				for (const selector of selectors) {
+					selector.removeEventListener(
+						'transitionend',
+						assignCoordinates,
+					)
+					selector.style.clipPath =
+						'polygon(0 50%, 100% 50%, 100% 50%, 0 50%)'
+				}
+				link.style.color = ''
+			}
+
+			function newCoordinates() {
+				function randomNumberWithin20() {
+					return Math.floor(Math.random() * 15)
+				}
+				let coord = []
+				for (let i = 0; i < 8; i++) {
+					coord.push(randomNumberWithin20())
+				}
+				return `polygon(
+          			${coord[0]}% ${coord[1]}%,
+					${coord[2] + 85}% ${coord[3]}%,
+					${coord[4] + 85}% ${coord[5] + 85}%,
+					${coord[6]}% ${coord[7] + 85}%
+          		)`
+			}
+
+			function setup() {
+				setPosition()
+
+				const is_mobile = window.screen.width < 640
+				const current_link = new URL(
+					window.location.href,
+				).pathname.split('/portfolio')[1]
+				const is_current_link = current_link === link_href
+
+				if (is_mobile) {
+					if (is_current_link) showSelector()
+					return
+				}
+
+				link.addEventListener('mouseover', showSelector)
+				link.addEventListener('mouseout', hideSelector)
+
+				$(window).on('resize', setPosition)
+			}
+
+			setup()
+		}
+	}
+
+	customElements.define('astro-navbar-selector', AstroNavbarSelector)
+</script>

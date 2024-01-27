@@ -6,11 +6,12 @@ interface Props {
 const { title } = Astro.props
 
 import Navbar from '../components/Navbar.astro'
+import Background from '../components/Background.astro'
 ---
 
 <style>
 	body {
-		font-family: 'Salsa', cursive;
+		font-family: 'Caprasimo', serif;
 	}
 </style>
 
@@ -28,10 +29,33 @@ import Navbar from '../components/Navbar.astro'
 			rel="stylesheet"
 		/>
 	</head>
-	<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"
-	></script>
-	<body class="h-[200svh] bg-black text-white">
+	<body class="bg-black text-[#996633]">
 		<Navbar />
 		<slot />
 	</body>
+	<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"
+	></script>
+	<script>
+		const mouseover = new MouseEvent('mouseover', {
+			view: window,
+			bubbles: true,
+			cancelable: true,
+		})
+		const mouseout = new MouseEvent('mouseout', {
+			view: window,
+			bubbles: true,
+			cancelable: true,
+		})
+
+		function simulateMouseEventWhenPresingTab(e: JQuery.KeyUpEvent) {
+			if (e.key === 'Tab') {
+				lastTarget.dispatchEvent(mouseout)
+				e.target.dispatchEvent(mouseover)
+				lastTarget = e.target
+			}
+		}
+
+		let lastTarget = document
+		$(document).on('keyup', simulateMouseEventWhenPresingTab)
+	</script>
 </html>
