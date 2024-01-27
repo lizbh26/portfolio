@@ -84,6 +84,7 @@ import NavbarSelector from './NavbarSelector.astro'
 			top: `-${offset_height}px`,
 		})
 		is_navbar_showing = false
+		rotateButton()
 	}
 
 	function showNavbar() {
@@ -91,6 +92,7 @@ import NavbarSelector from './NavbarSelector.astro'
 			top: `0`,
 		})
 		is_navbar_showing = true
+		rotateButton()
 	}
 
 	function handleResize() {
