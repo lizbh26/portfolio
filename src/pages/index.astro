@@ -1,48 +1,13 @@
 ---
-import Selector from "../components/Selector.astro";
+import Layout from '../layouts/Layout.astro'
 ---
 
 <style>
-  body {
-    font-family: "Salsa", cursive;
-    background-color: black;
-    color: white;
-    height: 200svh;
-  }
-
-  nav {
-    top: 3svh;
-    margin-top: 8svh;
-    width: 30%;
-    display: flex;
-    justify-content: space-around;
-    color: #663399;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+	h1 {
+		font-family: 'Caprasimo', serif;
+	}
 </style>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Salsa&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <nav style="position: sticky;">
-      <Selector href="" name="Link one" />
-      <Selector href="" name="Link two" />
-      <Selector href="" name="Link three" />
-      <Selector href="" name="Link four" />
-    </nav>
-  </body>
-</html>
+<Layout title="Ashley Lizbeth">
+	<h1 class="text-xl">Ashley Lizbeth</h1>
+</Layout>
