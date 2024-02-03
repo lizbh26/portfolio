@@ -4,7 +4,6 @@ interface TranslatableText {
     "nav.links.home": string,
     "nav.links.projects": string,
     "nav.links.contact_me": string,
-    "home.title.tag": string
 }
 
 interface uiTextInterface {
@@ -19,7 +18,6 @@ const uiText: uiTextInterface = {
             "nav.links.home": "Home",
             "nav.links.projects": "Projects",
             "nav.links.contact_me": "Contact me",
-            "home.title.tag": "A developer who cares deeply about her user's needs"
     },
     es: {
             "404.title": "Lo siento, esta página no existe.",
@@ -27,7 +25,6 @@ const uiText: uiTextInterface = {
             "nav.links.home": "Acerca de mi",
             "nav.links.projects": "Proyectos",
             "nav.links.contact_me": "Contactos",
-            "home.title.tag": "Una desarrolladora que se preocupa inmensamente por las necesidades de sus usuarios"
     }
 }
 

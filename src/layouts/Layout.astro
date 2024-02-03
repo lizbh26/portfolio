@@ -3,6 +3,9 @@ interface Props {
 	title: string
 }
 
+import { getLangFromUrl } from '../i18n/languagePicker'
+const lang = getLangFromUrl(Astro.url)
+
 const { title } = Astro.props
 
 import Navbar from '../components/Navbar.astro'
@@ -15,7 +18,7 @@ import Background from '../components/Background.astro'
 	}
 </style>
 
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
