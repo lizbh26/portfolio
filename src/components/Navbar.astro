@@ -1,5 +1,10 @@
 ---
 import NavbarSelector from './NavbarSelector.astro'
+
+import { getLangFromUrl, useTranslations } from '../i18n/languagePicker'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
 ---
 
 <style>
@@ -20,10 +25,9 @@ import NavbarSelector from './NavbarSelector.astro'
 	<div
 		class="flex w-full flex-col gap-2 sm:w-4/5 sm:flex-row sm:justify-between sm:gap-0 md:w-2/3 lg:w-1/2"
 	>
-		<NavbarSelector href="" name="Link one" />
-		<NavbarSelector href="about" name="Link two" />
-		<NavbarSelector href="projects" name="Link three" />
-		<NavbarSelector href="contact-me" name="Link four" />
+		<NavbarSelector href="" name={t('nav.links.home')} />
+		<NavbarSelector href="projects" name={t('nav.links.projects')} />
+		<NavbarSelector href="contact-me" name={t('nav.links.contact_me')} />
 	</div>
 
 	<div
@@ -44,8 +48,16 @@ import NavbarSelector from './NavbarSelector.astro'
 				id="navbar-languages"
 				class="cursor-pointer bg-black"
 			>
-				<option value="EN" selected>EN</option>
-				<option value="ES">ES</option>
+				<option value={current_language} selected
+					>{current_language}</option
+				>
+				{
+					current_language === 'es' ? (
+						<option value="en">en</option>
+					) : (
+						<option value="es">es</option>
+					)
+				}
 			</select>
 		</div>
 	</div>
@@ -115,4 +127,12 @@ import NavbarSelector from './NavbarSelector.astro'
 		handleResize()
 		$(window).on('resize', handleResize)
 	})()
+
+	$('#navbar-languages').on('change', (e) => {
+		const current_path = new URL(window.location.href).pathname.split(
+			`/`,
+		)[3]
+		const new_language = $(e.target).find(':selected').val()
+		window.location.href = `/portfolio/${new_language}/${current_path}`
+	})
 </script>

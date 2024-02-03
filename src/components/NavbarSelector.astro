@@ -1,10 +1,15 @@
 ---
+import { getLangFromUrl } from '../i18n/languagePicker'
 interface Props {
 	name: string
 	href: string
 }
 
+const current_language = getLangFromUrl(Astro.url)
+
 const { name, href } = Astro.props
+let trailingSlash = ''
+if (href !== '') trailingSlash = '/'
 ---
 
 <style>
@@ -27,10 +32,13 @@ const { name, href } = Astro.props
 	}
 </style>
 
-<astro-navbar-selector data-href={href}>
+<astro-navbar-selector data-href={href} data-lang={current_language}>
 	<div class="selector-background z-10"></div>
 	<div class="selector z-10"></div>
-	<a href=`/portfolio/${href}` class="relative z-20">{name}</a>
+	<a
+		href=`/portfolio/${current_language}/${href}${trailingSlash}`
+		class="relative z-20">{name}</a
+	>
 </astro-navbar-selector>
 
 <script>
@@ -42,9 +50,10 @@ const { name, href } = Astro.props
 			const selectors = this.getElementsByTagName('div')
 			const link = this.querySelector('a') ?? handleLinkNotFound()
 
+			const lang = this.dataset.lang
 			const current_link = new URL(window.location.href).pathname.split(
-				'/portfolio/',
-			)[1]
+				`/`,
+			)[3]
 			const is_current_link = current_link === this.dataset.href
 
 			function handleLinkNotFound(): never {

@@ -6,5 +6,13 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
 	site: 'https://ashley-lizbeth.github.io',
 	base: '/portfolio',
+	trailingSlash: 'always',
 	integrations: [tailwind()],
+	i18n: {
+		defaultLocale: "es",
+		locales: ["en", "es"],
+		routing: {
+			prefixDefaultLocale: true
+		}
+	}
 })
