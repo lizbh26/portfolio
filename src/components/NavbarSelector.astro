@@ -50,7 +50,6 @@ if (href !== '') trailingSlash = '/'
 			const selectors = this.getElementsByTagName('div')
 			const link = this.querySelector('a') ?? handleLinkNotFound()
 
-			const lang = this.dataset.lang
 			const current_link = new URL(window.location.href).pathname.split(
 				`/`,
 			)[3]

@@ -1,6 +1,10 @@
 ---
+import type { GetStaticPaths } from 'astro'
+export const getStaticPaths = (() => {
+	return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }]
+}) satisfies GetStaticPaths
+
 import Layout from '../../layouts/Layout.astro'
-import Selector from '../../components/Selector.astro'
 
 import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
 
@@ -22,5 +26,4 @@ const t = useTranslations(current_language)
 		<h1 class="text-6xl">Ashley Lizbeth</h1>
 		<p class="w-3/4">{t('home.title.tag')}</p>
 	</div>
-	<Selector name="HEY" href="" />
 </Layout>
