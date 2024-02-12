@@ -23,7 +23,7 @@ const t = useTranslations(current_language)
 	class="fixed z-50 flex w-full flex-col bg-black p-8 text-xl sm:flex-row sm:justify-between"
 >
 	<div
-		class="flex w-full flex-col gap-2 sm:w-4/5 sm:flex-row sm:justify-between sm:gap-0 md:w-2/3 lg:w-1/2"
+		class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 lg:pl-10 xl:w-2/5"
 	>
 		<NavbarSelector href="" name={t('nav.links.home')} />
 		<NavbarSelector href="projects" name={t('nav.links.projects')} />
@@ -133,6 +133,6 @@ const t = useTranslations(current_language)
 			`/`,
 		)[3]
 		const new_language = $(e.target).find(':selected').val()
-		window.location.href = `/portfolio/${new_language}/${current_path}`
+		window.location.href = `/portfolio/${new_language}/${current_path ? current_path + '/' : ''}`
 	})
 </script>

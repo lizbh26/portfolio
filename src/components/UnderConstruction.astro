@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/languagePicker'
+
+const current_language = getLangFromUrl(Astro.url)
+---
+
+<div class="w-100">
+	<img
+		class="sm:hidden"
+		src=`/portfolio/img/under-construction-mobile_${current_language}.png`
+		alt="Page under construction"
+	/>
+	<img
+		class="hidden sm:block lg:hidden"
+		src=`/portfolio/img/under-construction-tablet_${current_language}.png`
+		alt="Page under construction"
+	/>
+	<img
+		class="hidden lg:block"
+		src=`/portfolio/img/under-construction-desktop_${current_language}.png`
+		alt="Page under construction"
+	/>
+</div>
+<div class="absolute bottom-0 w-screen">
+	<p class="text-center font-sans">
+		Original asset by
+		<a
+			target="_blank"
+			href="https://www.freepik.com/free-vector/flat-construction-template_1584546.htm#query=under%20construction&position=4&from_view=keyword&track=ais&uuid=a8a36222-e433-46f7-9b26-14507600f5bf"
+			>Freepik</a
+		>
+	</p>
+</div>

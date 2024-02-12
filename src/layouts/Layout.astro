@@ -9,14 +9,7 @@ const lang = getLangFromUrl(Astro.url)
 const { title } = Astro.props
 
 import Navbar from '../components/Navbar.astro'
-import Background from '../components/Background.astro'
 ---
-
-<style>
-	body {
-		font-family: 'Caprasimo', serif;
-	}
-</style>
 
 <html lang={lang}>
 	<head>
@@ -32,10 +25,9 @@ import Background from '../components/Background.astro'
 			rel="stylesheet"
 		/>
 	</head>
-	<body class="bg-black text-[#996633]">
+	<body class="bg-black text-white">
 		<Navbar />
 		<slot />
-		<Background />
 	</body>
 	<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"
 	></script>
