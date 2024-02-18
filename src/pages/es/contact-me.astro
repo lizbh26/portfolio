@@ -1,16 +1,100 @@
 ---
+import feather from 'feather-icons'
 import Layout from '../../layouts/Layout.astro'
-import UnderConstruction from '../../components/UnderConstruction.astro'
 ---
 
 <style>
-	#title > p {
+	h1 {
 		font-family: 'Salsa', cursive;
 	}
 </style>
 
-<Layout title="Ashley Lizbeth - Contactame">
-	<div class="flex h-screen flex-col justify-end">
-		<UnderConstruction />
+<Layout title="Ashley Lizbeth - Contact Info">
+	<div class="h-screen w-screen p-10 pt-24">
+		<div>
+			<h1 class="mb-2 w-full text-center text-4xl text-[#996633]">
+				Contactos
+			</h1>
+			<hr class="text-[#996633]" />
+			<h2 class="w-full text-center text-xl">
+				Me
+				<span class="align-baseline text-2xl text-red-500">♥</span>
+				trabajar contigo,
+			</h2>
+			<p class="w-full text-center">asi que no dudes en decirme hola!</p>
+		</div>
+		<div class="flex w-full flex-col md:w-1/2 md:flex-row">
+			<div class="flex justify-center">
+				<div class="my-4 flex w-min flex-col gap-2">
+					<div class="flex gap-2">
+						<div set:html={feather.icons.mail.toSvg()} />
+						<a href="mailto:26ashley.lizbeth@gmail.com"
+							>26ashley.lizbeth@gmail.com</a
+						>
+					</div>
+					<div class="flex gap-2">
+						<div set:html={feather.icons['map-pin'].toSvg()} />
+						<p>Zapopan, Jalisco</p>
+					</div>
+				</div>
+			</div>
+			<hr class="" />
+			<div class="w-full">
+				<ul class="my-4 flex justify-center gap-6">
+					<li
+						class="flex h-10 w-10 items-center justify-center rounded-full border-2"
+					>
+						<a
+							href="https://github.com/ashley-lizbeth"
+							set:html={feather.icons.github.toSvg()}
+						/>
+					</li>
+					<li
+						class="flex h-10 w-10 items-center justify-center rounded-full border-2"
+					>
+						<a
+							href="https://www.linkedin.com/in/ashley-lizbeth/"
+							class="hover:bg-white hover:text-black"
+							set:html={feather.icons.linkedin.toSvg()}
+						/>
+					</li>
+					<li class="">
+						<a
+							href="https://profile.indeed.com/p/ashleyb-b36nw9s"
+							class="flex h-10 w-10 items-center justify-center rounded-full border-2 text-2xl"
+							><svg
+								version="1.1"
+								id="Layer_1"
+								xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink"
+								x="0px"
+								y="0px"
+								viewBox="0 0 1486.1 400"
+								style="enable-background:new 0 0 1486.1 400;"
+								xml:space="preserve"
+							>
+								<style type="text/css">
+									.st0 {
+										fill-rule: evenodd;
+										clip-rule: evenodd;
+										fill: #003a9b;
+									}
+								</style>
+								<g>
+									<g>
+										<path
+											class="st0"
+											d="M134.9,356.5V213c4.2,0.4,8.3,0.6,12.3,0.6    c20.1,0,38.9-5.3,54.9-14.5v157.5c0,13.4-3.1,23.4-9.4,30c-6.3,6.6-14.4,9.9-24.5,9.9c-9.8,0-17.7-3.3-23.9-10.1    C138.3,379.5,134.9,369.8,134.9,356.5z 
+										M135.3,12.7 C176.9-1.9,224.5-1.1,260,28.9c6.6,6.1,14.2,13.6,17.1,22.7c3.7,11.2-12.5-1.1-14.9-2.8c-11.6-7.4-23.2-13.6-36.3-17.9    c-70-21-136.3,16.9-177.5,76.1c-16.9,26-28.2,53.4-37.4,83.6c-0.9,3.3-1.8,7.6-3.7,10.5c-1.8,3.3-0.7-8.8-0.7-9.4    c1.5-12.5,4.1-24.5,7.2-36.6C32.9,90.9,74.9,37.3,135.3,12.7z 
+										M216,128.3c0,27.3-22.1,49.5-49.4,49.5s-49.4-22.1-49.4-49.5    s22.1-49.5,49.4-49.5S216,100.9,216,128.3z"
+										></path>
+									</g>
+								</g>
+							</svg></a
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </Layout>

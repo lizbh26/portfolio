@@ -13,11 +13,13 @@
 		"@astrojs/check": "^0.4.1",
 		"@astrojs/tailwind": "^5.1.0",
 		"astro": "^4.1.2",
+		"feather-icons": "^4.29.1",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^5.3.3"
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
+		"@types/feather-icons": "^4.29.4",
 		"prettier": "^3.2.4",
 		"prettier-plugin-astro": "^0.13.0",
 		"prettier-plugin-tailwindcss": "^0.5.11"
