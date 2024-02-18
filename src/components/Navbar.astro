@@ -9,7 +9,7 @@ const t = useTranslations(current_language)
 
 <style>
 	nav {
-		font-family: 'Luckiest Guy', cursive;
+		font-family: 'Salsa', cursive;
 		color: #663399;
 		transition-property: translateY gap;
 		transition-duration: 700ms;
@@ -20,10 +20,10 @@ const t = useTranslations(current_language)
 </style>
 
 <nav
-	class="fixed z-50 flex w-full flex-col bg-black p-8 text-xl sm:flex-row sm:justify-between"
+	class="fixed z-50 flex w-full flex-col bg-black p-8 text-xl sm:flex-row sm:justify-center"
 >
 	<div
-		class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 lg:pl-10 xl:w-2/5"
+		class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 xl:w-2/5"
 	>
 		<NavbarSelector href="" name={t('nav.links.home')} />
 		<NavbarSelector href="projects" name={t('nav.links.projects')} />
@@ -31,7 +31,7 @@ const t = useTranslations(current_language)
 	</div>
 
 	<div
-		class="mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-auto"
+		class="mb-2 mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
 		id="navbar-menu"
 	>
 		<button class="w-1/2 text-left sm:hidden" id="navbar-button">
@@ -61,10 +61,11 @@ const t = useTranslations(current_language)
 			</select>
 		</div>
 	</div>
+	<hr />
 </nav>
 
 <script>
-	import { MOBILE_WIDTH_TRESHOLD } from '../stores/device_widths'
+	import { MOBILE_WIDTH_TRESHOLD } from '../constants/device_widths'
 	let is_navbar_showing = false
 	function handleUndefined(): never {
 		throw new Error('Element not defined')
