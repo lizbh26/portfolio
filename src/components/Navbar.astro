@@ -19,49 +19,54 @@ const t = useTranslations(current_language)
 	}
 </style>
 
-<nav
-	class="fixed z-50 flex w-full flex-col bg-black p-8 text-xl sm:flex-row sm:justify-center"
->
-	<div
-		class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 xl:w-2/5"
-	>
-		<NavbarSelector href="" name={t('nav.links.home')} />
-		<NavbarSelector href="projects" name={t('nav.links.projects')} />
-		<NavbarSelector href="contact-me" name={t('nav.links.contact_me')} />
-	</div>
+<nav class="fixed z-10 w-full bg-black p-8 text-xl">
+	<div class="mb-2 flex flex-col sm:flex-row sm:justify-center">
+		<div
+			class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 xl:w-2/5"
+		>
+			<NavbarSelector href="" name={t('nav.links.home')} />
+			<NavbarSelector href="projects" name={t('nav.links.projects')} />
+			<NavbarSelector
+				href="contact-me"
+				name={t('nav.links.contact-me')}
+			/>
+		</div>
 
-	<div
-		class="mb-2 mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
-		id="navbar-menu"
-	>
-		<button class="w-1/2 text-left sm:hidden" id="navbar-button">
-			<span
-				id="navbar-button-icon"
-				class="duration-400 inline-block rotate-180 text-2xl transition-all ease-linear"
-			>
-				▲
-			</span>
-		</button>
-		<div class="w-1/2 text-right sm:w-auto">
-			<select
-				name="languages"
-				id="navbar-languages"
-				class="cursor-pointer bg-black"
-			>
-				<option value={current_language} selected
-					>{current_language}</option
+		<div
+			class="mb-2 mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
+			id="navbar-menu"
+		>
+			<button class="w-1/2 text-left sm:hidden" id="navbar-button">
+				<span
+					id="navbar-button-icon"
+					class="duration-400 inline-block rotate-180 text-2xl transition-all ease-linear"
 				>
-				{
-					current_language === 'es' ? (
-						<option value="en">en</option>
-					) : (
-						<option value="es">es</option>
-					)
-				}
-			</select>
+					▲
+				</span>
+			</button>
+			<div class="w-1/2 text-right sm:w-auto">
+				<select
+					name="languages"
+					id="navbar-languages"
+					class="cursor-pointer bg-black"
+				>
+					<option value={current_language} selected
+						>{current_language}</option
+					>
+					{
+						current_language === 'es' ? (
+							<option value="en">en</option>
+						) : (
+							<option value="es">es</option>
+						)
+					}
+				</select>
+			</div>
 		</div>
 	</div>
-	<hr />
+	<div class="flex w-full justify-center">
+		<hr class="w-full lg:w-2/3" />
+	</div>
 </nav>
 
 <script>

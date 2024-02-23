@@ -1,0 +1,347 @@
+---
+import feather from 'feather-icons'
+import Layout from '../../layouts/Layout.astro'
+
+import { GET as GET_CSRF } from '../api/csrf'
+
+import { useTranslations } from '../../i18n/languagePicker'
+import type { languages } from '../../i18n/languages'
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }]
+}
+
+const { lang } = Astro.params
+const t = useTranslations(lang as languages)
+
+const { token: csrf_token } = await GET_CSRF(Astro).json()
+
+Astro.cookies.set('csrf_token', csrf_token, { sameSite: 'strict' })
+---
+
+<style>
+	h1 {
+		font-family: 'Salsa', cursive;
+	}
+	input,
+	textarea {
+		color: white;
+		background-color: transparent;
+		border-bottom: 2px solid white;
+	}
+	input:focus,
+	textarea:focus {
+		outline: none;
+	}
+	.grecaptcha-badge {
+		visibility: hidden;
+	}
+	#message-loader {
+		border: 16px solid #f3f3f3; /* Light grey */
+		border-top: 16px solid #663399; /* Blue */
+		border-radius: 50%;
+		width: 120px;
+		height: 120px;
+		animation: spin 1.5s linear infinite;
+	}
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>
+
+<Layout title="Ashley Lizbeth - Contact Info">
+	<div class="h-screen w-screen p-10 pt-28">
+		<div class="mb-6">
+			<h1 class="mb-2 w-full text-center text-4xl text-[#996633]">
+				{t('contact-me.title')}
+			</h1>
+			<div class="flex justify-center">
+				<hr class="w-4/5 sm:w-2/3 md:w-1/2 xl:w-1/3" />
+			</div>
+			<h2
+				class="w-full text-center text-xl"
+				set:html={t('contact-me.subtitle-1')}
+			/>
+			<p class="w-full text-center">
+				{t('contact-me.subtitle-2')}
+			</p>
+		</div>
+		<div class="flex flex-col justify-center sm:flex-row">
+			<div
+				class="mb-4 flex w-full flex-col sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/4"
+			>
+				<form
+					action="/portfolio/api/send-email/"
+					method="post"
+					class="flex flex-col px-5 pb-5"
+					id="emailForm"
+				>
+					<input
+						type="hidden"
+						name="csrf_token"
+						value={csrf_token}
+						id="emailForm-csrf_token"
+					/>
+					<div class="my-2">
+						<label for="emailForm-name"
+							>{t('contact-me.email-form.name')}</label
+						>
+						<input
+							type="text"
+							id="emailForm-name"
+							name="name"
+							class="w-full"
+							required
+						/>
+					</div>
+
+					<div class="my-2">
+						<label for="emailForm-email"
+							>{t('contact-me.email-form.email')}</label
+						>
+						<input
+							type="email"
+							name="email"
+							id="emailForm-email"
+							class="w-full"
+							required
+						/>
+					</div>
+
+					<div class="my-2">
+						<label for="emailForm-message"
+							>{t('contact-me.email-form.message')}</label
+						>
+						<textarea
+							name="message"
+							id="emailForm-message"
+							rows="1"
+							class="w-full"
+							required></textarea>
+					</div>
+					<p
+						class="mb-4 text-sm text-gray-400"
+						set:html={t('contact-me.recaptcha')}
+					/>
+
+					<div class="flex w-full justify-center">
+						<button
+							data-sitekey={import.meta.env
+								.PUBLIC_RECAPTCHA_CLIENT_KEY}
+							data-callback="onSubmit"
+							data-action="submit"
+							class="g-recaptcha mt-2 w-2/3 rounded-md border-2 border-white px-6 py-1 text-white transition-all hover:bg-white hover:text-black focus:outline-none"
+							>{t('contact-me.email-form.send')}</button
+						>
+					</div>
+				</form>
+			</div>
+			<div class="flex w-full flex-col px-4 sm:w-auto md:px-10">
+				<div class="flex justify-center">
+					<div class="my-4 flex w-min flex-col gap-2">
+						<div class="flex gap-2">
+							<div set:html={feather.icons.mail.toSvg()} />
+							<a href="mailto:26ashley.lizbeth@gmail.com"
+								>26ashley.lizbeth@gmail.com</a
+							>
+						</div>
+						<div class="flex gap-2">
+							<div set:html={feather.icons['map-pin'].toSvg()} />
+							<p>Zapopan, Jalisco</p>
+						</div>
+					</div>
+				</div>
+				<hr class="md:hidden" />
+				<div class="w-full">
+					<ul class="my-4 flex justify-center gap-6">
+						<li class="flex h-10 w-10 items-center justify-center">
+							<a
+								href="https://github.com/ashley-lizbeth"
+								target="_blank"
+								set:html={feather.icons.github.toSvg()}
+							/>
+						</li>
+						<li class="flex h-10 w-10 items-center justify-center">
+							<a
+								href="https://www.linkedin.com/in/ashley-lizbeth/"
+								target="_blank"
+								set:html={feather.icons.linkedin.toSvg()}
+							/>
+						</li>
+						<li class="">
+							<a
+								href="https://profile.indeed.com/p/ashleyb-b36nw9s"
+								target="_blank"
+								class="flex h-10 w-10 items-center justify-center"
+								set:html={`
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="28" viewBox="0 0 350 400" fill-rule="evenodd" clip-rule="evenodd" fill="white">
+										<path d="M134.9,356.5V213c4.2,0.4,8.3,0.6,12.3,0.6    c20.1,0,38.9-5.3,54.9-14.5v157.5c0,13.4-3.1,23.4-9.4,30c-6.3,6.6-14.4,9.9-24.5,9.9c-9.8,0-17.7-3.3-23.9-10.1    C138.3,379.5,134.9,369.8,134.9,356.5z 
+										M135.3,12.7 C176.9-1.9,224.5-1.1,260,28.9c6.6,6.1,14.2,13.6,17.1,22.7c3.7,11.2-12.5-1.1-14.9-2.8c-11.6-7.4-23.2-13.6-36.3-17.9    c-70-21-136.3,16.9-177.5,76.1c-16.9,26-28.2,53.4-37.4,83.6c-0.9,3.3-1.8,7.6-3.7,10.5c-1.8,3.3-0.7-8.8-0.7-9.4    c1.5-12.5,4.1-24.5,7.2-36.6C32.9,90.9,74.9,37.3,135.3,12.7z 
+										M216,128.3c0,27.3-22.1,49.5-49.4,49.5s-49.4-22.1-49.4-49.5    s22.1-49.5,49.4-49.5S216,100.9,216,128.3z"/>
+									</svg>
+								`}
+							/>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div
+		id="message-backdrop"
+		class="fixed top-0 z-30 h-screen w-screen items-center justify-center backdrop-blur-sm"
+		style="display:none;"
+	>
+		<div class="absolute z-40 h-full w-full bg-gray-950 opacity-50"></div>
+		<div
+			class="z-50 w-4/5 rounded border-2 border-gray-700 bg-gray-900 px-10 py-6 sm:w-2/3 md:w-1/2 lg:w-2/5"
+		>
+			<div class="flex w-full justify-end">
+				<button
+					id="message-close-button"
+					set:html={feather.icons.x.toSvg()}
+				/>
+			</div>
+			<div id="message-list">
+				<div class="flex w-full justify-center">
+					<div id="message-loader"></div>
+				</div>
+				<p
+					id="message-bad-input"
+					class="hidden w-full text-center text-white"
+				>
+					{t('contact-me.messages.bad-input')}
+				</p>
+				<p
+					id="message-success"
+					class="hidden w-full text-center text-white"
+				>
+					{t('contact-me.messages.success')}
+				</p>
+				<p
+					id="message-failure"
+					class="hidden w-full text-center text-white"
+				>
+					{t('contact-me.messages.failure')}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<script is:inline>
+		function getCSRFCookie() {
+			return document.cookie
+				.split('; ')
+				.find((cookie) => cookie.startsWith('csrf_token='))
+				.split('=')[1]
+		}
+		function getFormValues() {
+			const csrf_token = $('#emailForm-csrf_token').val()
+			const name = $('#emailForm-name').val()
+			const email = $('#emailForm-email').val()
+			const message = $('#emailForm-email').val()
+
+			if (!csrf_token || !name || !email || !message) {
+				return null
+			}
+
+			return { csrf_token, name, email, message }
+		}
+
+		async function handleRecaptchaSuccess() {
+			const form_values = getFormValues()
+
+			if (!form_values) {
+				showBadInputMessage()
+				return
+			}
+
+			const response = await fetch('/portfolio/api/send-email/', {
+				method: 'POST',
+				headers: {
+					'X-CSRFtoken': getCSRFCookie(),
+				},
+				body: JSON.stringify(form_values),
+			})
+
+			response.ok ? showSuccessMessage() : showFailureMessage()
+		}
+
+		function hideAllMessages() {
+			$('#message-list').children().addClass('hidden')
+		}
+
+		function showLoadingMessage() {
+			$('#message-backdrop')
+				.addClass('flex')
+				.animate({ opacity: 'toggle' }, 200)
+		}
+
+		function showBadInputMessage() {
+			hideAllMessages()
+			$('#message-bad-input').removeClass('hidden')
+		}
+
+		function showSuccessMessage() {
+			hideAllMessages()
+			$('#message-success').removeClass('hidden')
+		}
+
+		function showFailureMessage() {
+			hideAllMessages()
+			$('#message-failure').removeClass('hidden')
+		}
+
+		function setRandomDelay() {
+			setTimeout(() => {}, Math.random() * 800)
+		}
+
+		function onSubmit(token) {
+			showLoadingMessage()
+			fetch('/portfolio/api/recaptcha/', {
+				method: 'POST',
+				body: JSON.stringify({ recaptcha: token }),
+			})
+				.then((response) => response.json())
+				.then((gResponse) => {
+					if (gResponse.success) {
+						handleRecaptchaSuccess()
+					} else {
+						setRandomDelay()
+						showSuccessMessage()
+					}
+				})
+		}
+	</script>
+	<script>
+		$(window).on('load', () => {
+			$('textarea')
+				.each(function () {
+					this.setAttribute(
+						'style',
+						'height:' + this.scrollHeight + 'px;overflow-y:hidden;',
+					)
+				})
+				.on('input', function () {
+					this.style.height = '0'
+					this.style.height = this.scrollHeight + 'px'
+				})
+			$('.grecaptcha-badge').css('visibility', 'hidden')
+			$('#message-close-button').on('click', () => {
+				$('#message-backdrop').animate(
+					{ opacity: 'toggle' },
+					200,
+					() => {
+						$('#message-backdrop').removeClass('flex')
+					},
+				)
+			})
+		})
+	</script>
+</Layout>
