@@ -22,5 +22,5 @@ export async function POST({ request }: APIContext) {
 
 	const responseData = await response.json()
 
-	return new Response(JSON.stringify(responseData), { status: 200 })
+	return new Response(JSON.stringify(responseData))
 }
