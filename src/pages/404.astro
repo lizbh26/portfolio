@@ -1,9 +1,5 @@
 ---
 import Selector from '../components/Selector.astro'
-import { useTranslations, getLangFromUrl } from '../i18n/languagePicker'
-
-const current_language = getLangFromUrl(Astro.url)
-const t = useTranslations(current_language)
 ---
 
 <style>
@@ -12,15 +8,11 @@ const t = useTranslations(current_language)
 		color: #663399;
 	}
 	h1 {
-		text-align: center;
-		margin-top: 2.5rem;
-		margin-bottom: 2.5rem;
-		font-size: 3rem /* 48px */;
 		line-height: 1;
 	}
 </style>
 
-<html lang={current_language}>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,9 +29,11 @@ const t = useTranslations(current_language)
 	<body
 		class="flex h-screen w-screen flex-col items-center justify-center bg-black"
 	>
-		<h1 class="w-5/6 font-bold text-[#996633]">
-			{t('404.title')}
+		<h1
+			class="mb-10 mt-10 w-5/6 text-center text-5xl font-bold text-[#996633]"
+		>
+			Sorry, this page doesn't exist.
 		</h1>
-		<Selector href="" name={t('404.go_back')} />
+		<Selector href="" name="Go back to HOME." />
 	</body>
 </html>
