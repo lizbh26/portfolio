@@ -139,6 +139,6 @@ const t = useTranslations(current_language)
 			`/`,
 		)[3]
 		const new_language = $(e.target).find(':selected').val()
-		window.location.href = `/portfolio/${new_language}/${current_path ? current_path + '/' : ''}`
+		window.location.href = `/${new_language}/${current_path ? current_path + '/' : ''}`
 	})
 </script>

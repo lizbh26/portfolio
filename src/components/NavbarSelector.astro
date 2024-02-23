@@ -35,9 +35,8 @@ if (href !== '') trailingSlash = '/'
 <astro-navbar-selector data-href={href} data-lang={current_language}>
 	<div class="selector-background z-10"></div>
 	<div class="selector z-10"></div>
-	<a
-		href=`/portfolio/${current_language}/${href}${trailingSlash}`
-		class="relative z-20">{name}</a
+	<a href=`/${current_language}/${href}${trailingSlash}` class="relative z-20"
+		>{name}</a
 	>
 </astro-navbar-selector>
 

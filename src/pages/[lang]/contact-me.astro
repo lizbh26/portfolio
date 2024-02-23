@@ -76,7 +76,7 @@ Astro.cookies.set('csrf_token', csrf_token, { sameSite: 'strict' })
 				class="mb-4 flex w-full flex-col sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/4"
 			>
 				<form
-					action="/portfolio/api/send-email/"
+					action="/api/send-email/"
 					method="post"
 					class="flex flex-col px-5 pb-5"
 					id="emailForm"
@@ -262,7 +262,7 @@ Astro.cookies.set('csrf_token', csrf_token, { sameSite: 'strict' })
 				return
 			}
 
-			const response = await fetch('/portfolio/api/send-email/', {
+			const response = await fetch('/api/send-email/', {
 				method: 'POST',
 				headers: {
 					'X-CSRFtoken': getCSRFCookie(),
@@ -304,7 +304,7 @@ Astro.cookies.set('csrf_token', csrf_token, { sameSite: 'strict' })
 
 		function onSubmit(token) {
 			showLoadingMessage()
-			fetch('/portfolio/api/recaptcha/', {
+			fetch('/api/recaptcha/', {
 				method: 'POST',
 				body: JSON.stringify({ recaptcha: token }),
 			})
