@@ -309,9 +309,9 @@ Astro.cookies.set('csrf_token', csrf_token, { sameSite: 'strict' })
 				body: JSON.stringify({ recaptcha: token }),
 			})
 				.then((response) => response.json())
-				.then((gResponse) => {
+				.then(async (gResponse) => {
 					if (gResponse.success) {
-						handleRecaptchaSuccess()
+						await handleRecaptchaSuccess()
 					} else {
 						setRandomDelay()
 						showSuccessMessage()
