@@ -137,7 +137,7 @@ const t = useTranslations(current_language)
 	$('#navbar-languages').on('change', (e) => {
 		const current_path = new URL(window.location.href).pathname.split(
 			`/`,
-		)[3]
+		)[2]
 		const new_language = $(e.target).find(':selected').val()
 		window.location.href = `/${new_language}/${current_path ? current_path + '/' : ''}`
 	})

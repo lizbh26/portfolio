@@ -51,7 +51,7 @@ if (href !== '') trailingSlash = '/'
 
 			const current_link = new URL(window.location.href).pathname.split(
 				`/`,
-			)[3]
+			)[2]
 			const is_current_link = current_link === this.dataset.href
 
 			function handleLinkNotFound(): never {
