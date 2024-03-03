@@ -2,8 +2,6 @@
 import feather from 'feather-icons'
 import Layout from '../../layouts/Layout.astro'
 
-import { GET as GET_CSRF } from '../api/csrf'
-
 import { useTranslations } from '../../i18n/languagePicker'
 import type { languages } from '../../i18n/languages'
 
@@ -13,44 +11,11 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params
 const t = useTranslations(lang as languages)
-
-const { token: csrf_token } = await GET_CSRF(Astro).json()
-
-Astro.cookies.set('csrf_token', csrf_token, { sameSite: 'strict' })
 ---
 
 <style>
 	h1 {
 		font-family: 'Salsa', cursive;
-	}
-	input,
-	textarea {
-		color: white;
-		background-color: transparent;
-		border-bottom: 2px solid white;
-	}
-	input:focus,
-	textarea:focus {
-		outline: none;
-	}
-	.grecaptcha-badge {
-		visibility: hidden;
-	}
-	#message-loader {
-		border: 16px solid #f3f3f3; /* Light grey */
-		border-top: 16px solid #663399; /* Blue */
-		border-radius: 50%;
-		width: 120px;
-		height: 120px;
-		animation: spin 1.5s linear infinite;
-	}
-	@keyframes spin {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
 	}
 </style>
 

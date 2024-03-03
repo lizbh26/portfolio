@@ -4,13 +4,9 @@ import tailwind from '@astrojs/tailwind'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://portfolio-eight-coral-65.vercel.app',
-	base: "/",
-	output: "hybrid",
-	adapter: vercelServerless({
-		webAnalytics: true,
-		imageService: true,
-	}),
+	site: 'https://ashley-lizbeth.github.io',
+	base: "/portfolio",
+	output: "static",
 	integrations: [tailwind()],
 	trailingSlash: 'always',
 	i18n: {
