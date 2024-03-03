@@ -6,7 +6,6 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
 	site: 'https://ashley-lizbeth.github.io',
 	base: "/portfolio",
-	output: "static",
 	integrations: [tailwind()],
 	trailingSlash: 'always',
 	i18n: {
