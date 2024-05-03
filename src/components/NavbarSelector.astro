@@ -37,7 +37,7 @@ if (href !== '') trailingSlash = '/'
 	<div class="selector z-10"></div>
 	<a
 		href=`/portfolio/${current_language}/${href}${trailingSlash}`
-		class="relative z-20">{name}</a
+		class="relative z-20 transition-all hover:text-[#b14eab] scale-105">{name}</a
 	>
 </astro-navbar-selector>
 
@@ -54,6 +54,10 @@ if (href !== '') trailingSlash = '/'
 				`/`,
 			)[3]
 			const is_current_link = current_link === this.dataset.href
+			if(is_current_link){
+				this.style.color = "#b14eab"
+				this.innerHTML += "🠴"
+			}
 
 			function handleLinkNotFound(): never {
 				throw new Error('Selected link not found')
@@ -125,8 +129,6 @@ if (href !== '') trailingSlash = '/'
 					window.screen.width >= COMPUTER_WIDTH_TRESHOLD
 				if (is_computer) {
 					hideSelector()
-				} else if (is_current_link) {
-					showSelector()
 				}
 			}
 

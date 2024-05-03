@@ -1,6 +1,6 @@
 interface TranslatableText {
 	'nav.links.home': string
-	'nav.links.projects': string
+	'nav.links.experience': string
 	'nav.links.contact-me': string
 
 	'home.tagline': string
@@ -16,6 +16,8 @@ interface TranslatableText {
 	'contact-me.messages.bad-input': string
 	'contact-me.messages.success': string
 	'contact-me.messages.failure': string
+
+	'empty-page': string
 }
 
 interface uiTextInterface {
@@ -26,7 +28,7 @@ interface uiTextInterface {
 const uiText: uiTextInterface = {
 	en: {
 		'nav.links.home': 'Home',
-		'nav.links.projects': 'Projects',
+		'nav.links.experience': 'Experience',
 		'nav.links.contact-me': 'Contact me',
 
 		'home.tagline': "A developer who cares deeply about her user's needs",
@@ -55,10 +57,12 @@ const uiText: uiTextInterface = {
 			'Thanks for getting into contact! You can expect to hear from me soon.',
 		'contact-me.messages.failure':
 			'Something went wrong, please try again.',
+
+		'empty-page': "Sorry, nothing to see here... yet!"
 	},
 	es: {
 		'nav.links.home': 'Acerca de mi',
-		'nav.links.projects': 'Proyectos',
+		'nav.links.experience': 'Experiencia',
 		'nav.links.contact-me': 'Contactos',
 
 		'home.tagline':
@@ -88,6 +92,8 @@ const uiText: uiTextInterface = {
 			'¡Gracias por ponerte en contacto! Puedes esperar una respuesta muy pronto.',
 		'contact-me.messages.failure':
 			'Algo salió mal, por favor vuelve a intentar.',
+
+		'empty-page': "Oops, no hay nada aquí... aún!"
 	},
 }
 

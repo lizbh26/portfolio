@@ -1,0 +1,18 @@
+---
+import { useTranslations } from '../../i18n/languagePicker'
+import type { languages } from '../../i18n/languages'
+import Layout from '../../layouts/Layout.astro'
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }]
+}
+
+const { lang } = Astro.params
+const t = useTranslations(lang as languages)
+---
+
+<Layout title="Ashley Lizbeth - Experience">
+	<div class="flex pt-28 flex-col items-center justify-center">
+		<p class="text-white text-3xl">{t('empty-page')}</p>
+	</div>
+</Layout>
