@@ -1,7 +1,8 @@
 ---
-import NavbarSelector from './NavbarSelector.astro'
+import Item from './NavbarItem.astro'
+import LanguageSelector from './NavbarLanguageSelector.astro'
 
-import { getLangFromUrl, useTranslations } from '../i18n/languagePicker'
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
 
 const current_language = getLangFromUrl(Astro.url)
 const t = useTranslations(current_language)
@@ -13,66 +14,49 @@ const t = useTranslations(current_language)
 		transition-property: translateY gap;
 		transition-duration: 700ms;
 	}
-	#navbar-menu{
-		color: #b14eab;
-	}
 	option {
 		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	}
 </style>
 
-<nav class="fixed z-10 w-full bg-black p-8 text-xl">
-	<div class="mb-2 flex flex-col sm:flex-row sm:justify-center">
-		<div
-			class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 xl:w-2/5"
-		>
-			<NavbarSelector href="" name={t('nav.links.home')} />
-			<NavbarSelector href="experience" name={t('nav.links.experience')} />
-			<NavbarSelector
-				href="contact-me"
-				name={t('nav.links.contact-me')}
-			/>
-		</div>
+<nav
+	class="fixed z-10 flex w-full items-center justify-center bg-black p-8 pb-0 text-xl"
+>
+	<div class="w-full lg:w-2/3">
+		<div class="mb-2 flex flex-col sm:flex-row sm:justify-around">
+			<div
+				class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 lg:w-1/2 xl:w-2/5"
+			>
+				<Item href="" name={t('nav.links.home')} />
+				<Item href="experience" name={t('nav.links.experience')} />
+				<Item href="contact-me" name={t('nav.links.contact-me')} />
+			</div>
 
-		<div
-			class="mb-2 mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
-			id="navbar-menu"
-		>
-			<button class="w-1/2 text-left sm:hidden" id="navbar-button">
-				<span
-					id="navbar-button-icon"
-					class="duration-400 inline-block rotate-180 text-2xl transition-all ease-linear"
-				>
-					▲
-				</span>
-			</button>
-			<div class="w-1/2 text-right sm:w-auto">
-				<select
-					name="languages"
-					id="navbar-languages"
-					class="cursor-pointer bg-black"
-				>
-					<option value={current_language} selected
-						>{current_language}</option
+			<div
+				class="mb-2 mt-5 flex w-full items-start justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
+				id="navbar-menu"
+			>
+				<button class="w-1/2 text-left sm:hidden" id="navbar-button">
+					<span
+						id="navbar-button-icon"
+						class="inline-block rotate-180 text-2xl text-[#b14eab] transition-all duration-300"
 					>
-					{
-						current_language === 'es' ? (
-							<option value="en">en</option>
-						) : (
-							<option value="es">es</option>
-						)
-					}
-				</select>
+						▲
+					</span>
+				</button>
+				<div class="w-1/2 text-right sm:w-auto">
+					<LanguageSelector />
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="flex w-full justify-center">
-		<hr class="w-full lg:w-2/3" />
+		<div class="flex w-full justify-center">
+			<hr class="w-full" />
+		</div>
 	</div>
 </nav>
 
 <script>
-	import { MOBILE_WIDTH_TRESHOLD } from '../constants/device_widths'
+	import { MOBILE_WIDTH_TRESHOLD } from '../../constants/device_widths'
 	let is_navbar_showing = false
 	function handleUndefined(): never {
 		throw new Error('Element not defined')
@@ -95,7 +79,7 @@ const t = useTranslations(current_language)
 		const button_height =
 			$('#navbar-menu').outerHeight(true) ?? handleUndefined()
 		const navbar_bottom_margin = parseInt(
-			$('nav').css('paddingBottom').replace('px', ''),
+			$('nav').css('paddingBottom').replace('px', '')
 		)
 		const offset_height =
 			navbar_height - button_height - navbar_bottom_margin
@@ -138,7 +122,7 @@ const t = useTranslations(current_language)
 
 	$('#navbar-languages').on('change', (e) => {
 		const current_path = new URL(window.location.href).pathname.split(
-			`/`,
+			`/`
 		)[3]
 		const new_language = $(e.target).find(':selected').val()
 		window.location.href = `/portfolio/${new_language}/${current_path ? current_path + '/' : ''}`

@@ -1,0 +1,48 @@
+---
+import type { string } from 'astro/zod'
+import { getLangFromUrl } from '../../i18n/languagePicker'
+import { language_list, type languages } from '../../i18n/languages'
+
+const current_language = getLangFromUrl(Astro.url)
+
+let languages = []
+for (let [key, value] of Object.entries(language_list)) {
+	if (key == current_language) continue
+	languages.push({ key, value })
+}
+
+function createRedirect(language: string) {
+	const current_path = Astro.url.pathname.split(`/`)[3]
+	return `/portfolio/${language}/${current_path ? current_path + '/' : ''}`
+}
+---
+
+<div class="flex flex-col items-end justify-start">
+	<div class="mt-1 flex flex-col items-start">
+		<span id="language-list-opener" class="mb-2 cursor-pointer"
+			>{language_list[current_language]}
+			<span
+				id="language-list-triangle"
+				class="inline-block text-[#b14eab] transition-all">▼</span
+			></span
+		>
+		<ul id="language-list" class="hidden">
+			{
+				languages.map(({ key, value }) => {
+					return (
+						<li class="mb-2 cursor-pointer underline transition-all hover:text-[#b14eab] sm:no-underline sm:hover:underline">
+							<a href={createRedirect(key)}>{value}</a>
+						</li>
+					)
+				})
+			}
+		</ul>
+	</div>
+</div>
+
+<script>
+	$('#language-list-opener').on('click', () => {
+		$('#language-list').toggleClass('hidden')
+		$('#language-list-triangle').toggleClass('rotate-180')
+	})
+</script>

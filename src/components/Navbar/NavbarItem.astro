@@ -1,0 +1,40 @@
+---
+import { getLangFromUrl } from '../../i18n/languagePicker'
+interface Props {
+	name: string
+	href: string
+}
+
+const current_language = getLangFromUrl(Astro.url)
+
+const { name, href } = Astro.props
+let trailingSlash = ''
+if (href !== '') trailingSlash = '/'
+---
+
+<astro-navbar-selector data-href={href} data-lang={current_language}>
+	<a
+		href=`/portfolio/${current_language}/${href}${trailingSlash}`
+		class="relative z-20 transition-all hover:text-[#b14eab] hover:underline"
+		>{name}</a
+	>
+</astro-navbar-selector>
+
+<script>
+	class AstroNavbarSelector extends HTMLElement {
+		constructor() {
+			super()
+
+			const current_link = new URL(window.location.href).pathname.split(
+				`/`
+			)[3]
+			const is_current_link = current_link === this.dataset.href
+			if (is_current_link) {
+				this.style.color = '#b14eab'
+				this.innerHTML += '🠴'
+			}
+		}
+	}
+
+	customElements.define('astro-navbar-selector', AstroNavbarSelector)
+</script>
