@@ -20,7 +20,7 @@ import Navbar from '../components/Navbar/NavbarBody.astro'
 <html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/portfolio/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
@@ -39,27 +39,4 @@ import Navbar from '../components/Navbar/NavbarBody.astro'
 		<Navbar />
 		<slot />
 	</body>
-	<script>
-		const mouseover = new MouseEvent('mouseover', {
-			view: window,
-			bubbles: true,
-			cancelable: true,
-		})
-		const mouseout = new MouseEvent('mouseout', {
-			view: window,
-			bubbles: true,
-			cancelable: true,
-		})
-
-		function simulateMouseEventWhenPresingTab(e: JQuery.KeyUpEvent) {
-			if (e.key === 'Tab') {
-				lastTarget.dispatchEvent(mouseout)
-				e.target.dispatchEvent(mouseover)
-				lastTarget = e.target
-			}
-		}
-
-		let lastTarget = document
-		$(document).on('keyup', simulateMouseEventWhenPresingTab)
-	</script>
 </html>
