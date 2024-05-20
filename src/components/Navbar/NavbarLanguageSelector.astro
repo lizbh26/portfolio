@@ -1,14 +1,12 @@
 ---
-import type { string } from 'astro/zod'
 import { getLangFromUrl } from '../../i18n/languagePicker'
 import { language_list, type languages } from '../../i18n/languages'
 
 const current_language = getLangFromUrl(Astro.url)
 
 let languages = []
-for (let [key, value] of Object.entries(language_list)) {
-	if (key == current_language) continue
-	languages.push({ key, value })
+for (let [key, _value] of Object.entries(language_list)) {
+	languages.push(key)
 }
 
 function createRedirect(language: string) {
@@ -18,31 +16,21 @@ function createRedirect(language: string) {
 ---
 
 <div class="flex flex-col items-end justify-start">
-	<div class="mt-1 flex flex-col items-start">
-		<span id="language-list-opener" class="mb-2 cursor-pointer"
-			>{language_list[current_language]}
-			<span
-				id="language-list-triangle"
-				class="inline-block text-[#b14eab] transition-all">▼</span
-			></span
-		>
-		<ul id="language-list" class="hidden">
-			{
-				languages.map(({ key, value }) => {
+	<ul class="mt-1 flex items-start outline outline-1 rounded">
+		{
+			languages.map((language) => {
+				if(language == current_language)
 					return (
-						<li class="mb-2 cursor-pointer underline transition-all hover:text-[#b14eab] sm:no-underline sm:hover:underline">
-							<a href={createRedirect(key)}>{value}</a>
+						<li class="py-1 px-2 outline-white bg-[#b14eab]">
+							{language}
 						</li>
 					)
-				})
-			}
-		</ul>
-	</div>
+				return (
+					<li class="py-1 px-2 outline-white">
+						<a class="underline" href={createRedirect(language)}>{language}</a>
+					</li>
+				)
+			})
+		}
+	</ul>
 </div>
-
-<script>
-	$('#language-list-opener').on('click', () => {
-		$('#language-list').toggleClass('hidden')
-		$('#language-list-triangle').toggleClass('rotate-180')
-	})
-</script>
