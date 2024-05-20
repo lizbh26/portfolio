@@ -27,7 +27,7 @@ interface uiTextInterface {
 
 const uiText: uiTextInterface = {
 	en: {
-		'nav.links.home': 'Home',
+		'nav.links.home': 'About me',
 		'nav.links.experience': 'Experience',
 		'nav.links.contact-me': 'Contact me',
 
