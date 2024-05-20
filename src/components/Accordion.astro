@@ -1,0 +1,61 @@
+---
+interface Props {
+    title: string
+    startDate: string
+    endDate?: string
+}
+
+const {title, startDate, endDate = null} = Astro.props
+---
+
+<style>
+    .accordion-body{
+        transition: max-height 0.2s ease-out;
+        max-height: 0;
+    }
+</style>
+
+<astro-accordion class="pb-4">
+    <div class="mx-2 cursor-pointer">
+        <small class="text-sm text-gray-300">
+            {startDate} -
+            {endDate || "ongoing"}
+        </small>
+        <div class="flex justify-between gap-4">
+            <h2 class="text-xl">{title}</h2>
+            <span class="accordion-icon transition-transform rotate-180">▲</span>
+        </div>
+    </div>
+    <hr>
+    <div class="accordion-body overflow-hidden">
+        <slot />
+    </div>
+</astro-accordion>
+
+<script>
+    class AstroAccordion extends HTMLElement {
+        constructor() {
+            super()
+            const icon = this.getElementsByClassName("accordion-icon")[0]
+            const body = this.getElementsByClassName("accordion-body")[0]
+
+            this.addEventListener("click", () => {
+                if(!this.classList.contains("accordion-active")){
+                    for(const accordion of document.getElementsByClassName("accordion-active")) {
+                        accordion.click()
+                    }
+                }
+                this.classList.toggle("accordion-active")
+                icon.classList.toggle("rotate-180")
+                if(body.style.maxHeight){
+                    body.style.maxHeight = null
+                }
+                else {
+                    body.style.maxHeight = body.scrollHeight + 'px'
+                }
+            })
+        }
+    }
+
+    customElements.define('astro-accordion', AstroAccordion)
+</script>
