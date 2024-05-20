@@ -36,12 +36,12 @@ const {title, startDate, endDate = null} = Astro.props
     class AstroAccordion extends HTMLElement {
         constructor() {
             super()
-            const icon = this.getElementsByClassName("accordion-icon")[0]
-            const body = this.getElementsByClassName("accordion-body")[0]
+            const icon = this.getElementsByClassName("accordion-icon")[0] as HTMLElement
+            const body = this.getElementsByClassName("accordion-body")[0] as HTMLElement
 
             this.addEventListener("click", () => {
                 if(!this.classList.contains("accordion-active")){
-                    for(const accordion of document.getElementsByClassName("accordion-active")) {
+                    for(const accordion of document.getElementsByClassName("accordion-active") as HTMLCollectionOf<HTMLElement>) {
                         accordion.click()
                     }
                 }
