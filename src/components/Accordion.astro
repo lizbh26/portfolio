@@ -23,11 +23,11 @@ const {title, startDate, endDate = null} = Astro.props
         </small>
         <div class="flex justify-between gap-4">
             <h2 class="text-xl">{title}</h2>
-            <span class="accordion-icon transition-transform rotate-180">▲</span>
+            <span class="accordion-icon transition-transform">▲</span>
         </div>
     </div>
     <hr>
-    <div class="accordion-body overflow-hidden">
+    <div class="accordion-body overflow-hidden bg-gray-950 px-4 rounded-b-sm border border-t-0 border-gray-500">
         <slot />
     </div>
 </astro-accordion>
@@ -48,7 +48,7 @@ const {title, startDate, endDate = null} = Astro.props
                 this.classList.toggle("accordion-active")
                 icon.classList.toggle("rotate-180")
                 if(body.style.maxHeight){
-                    body.style.maxHeight = "0"
+                    body.style.maxHeight = ""
                 }
                 else {
                     body.style.maxHeight = body.scrollHeight + 'px'
