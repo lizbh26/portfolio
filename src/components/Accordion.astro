@@ -48,7 +48,7 @@ const {title, startDate, endDate = null} = Astro.props
                 this.classList.toggle("accordion-active")
                 icon.classList.toggle("rotate-180")
                 if(body.style.maxHeight){
-                    body.style.maxHeight = null
+                    body.style.maxHeight = "0"
                 }
                 else {
                     body.style.maxHeight = body.scrollHeight + 'px'
