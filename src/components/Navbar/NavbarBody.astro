@@ -3,6 +3,7 @@ import Item from './NavbarItem.astro'
 import LanguageSelector from './NavbarLanguageSelector.astro'
 
 import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
+import feather from 'feather-icons'
 
 const current_language = getLangFromUrl(Astro.url)
 const t = useTranslations(current_language)
@@ -33,16 +34,15 @@ const t = useTranslations(current_language)
 			</div>
 
 			<div
-				class="mb-2 mt-5 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
+				class="mb-2 mt-5 px-5 md:px-0 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
 				id="navbar-menu"
 			>
 				<button class="w-1/2 text-left sm:hidden" id="navbar-button">
 					<span
 						id="navbar-button-icon"
-						class="inline-block rotate-180 text-2xl text-[#b14eab] transition-all duration-300"
-					>
-						▲
-					</span>
+						class="inline-block rotate-180 text-xl transition-all duration-300"
+						set:html={feather.icons['chevron-down'].toSvg({color: "#b14eab"})}
+					/>	
 				</button>
 				<div class="w-1/2 text-right sm:w-auto">
 					<LanguageSelector />
