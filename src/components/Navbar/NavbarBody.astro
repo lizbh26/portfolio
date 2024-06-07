@@ -21,30 +21,32 @@ const t = useTranslations(current_language)
 </style>
 
 <nav
-	class="fixed z-10 flex w-full items-center justify-center bg-black p-8 pb-2 text-xl"
+	class="fixed z-50 flex w-full items-center justify-center bg-transparent p-8 pb-0 text-xl backdrop-blur"
 >
 	<div class="w-full lg:w-2/3">
 		<div class="mb-2 flex flex-col sm:flex-row sm:justify-around sm:items-end">
 			<div
 				class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 xl:w-1/2"
-			>
-				<Item href="" name={t('nav.links.home')} />
-				<Item href="experience" name={t('nav.links.experience')} />
-				<Item href="contact-me" name={t('nav.links.contact-me')} />
+				>
+				<Item href="#about-me" name={t('about-me.title')} />
+				<hr class=" h-px border-rose-400">
+				<Item href="#experience" name={t('experience.title')} />
+				<hr class=" h-px border-rose-400">
+				<Item href="#contact-me" name={t('contact-me.title')} />
 			</div>
 
 			<div
-				class="mb-2 mt-5 px-5 md:px-0 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
+				class="mb-1 mt-5 px-5 md:px-0 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
 				id="navbar-menu"
 			>
-				<button class="w-1/2 text-left sm:hidden" id="navbar-button">
+				<button class="w-1/2 text-left sm:hidden flex items-center" id="navbar-button">
 					<span
 						id="navbar-button-icon"
 						class="inline-block rotate-180 text-xl transition-all duration-300"
-						set:html={feather.icons['chevron-down'].toSvg({color: "#b14eab"})}
+						set:html={feather.icons['chevron-down'].toSvg({class:'text-rose-400'})}
 					/>	
 				</button>
-				<div class="w-1/2 text-right sm:w-auto">
+				<div class="w-1/2 text-right sm:w-auto flex items-center justify-end">
 					<LanguageSelector />
 				</div>
 			</div>
@@ -111,8 +113,11 @@ const t = useTranslations(current_language)
 	}
 
 	;(function setup() {
-		$('#navbar-button').on('click', (event) => {
+		$('#navbar-button').on('click', () => {
 			is_navbar_showing ? hideNavbar() : showNavbar(), rotateButton()
+		})
+		$('astro-navbar-item').on('click', () => {
+			window.screen.width < MOBILE_WIDTH_TRESHOLD ? hideNavbar() : undefined
 		})
 		rotateButton()
 

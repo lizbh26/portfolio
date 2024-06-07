@@ -8,34 +8,25 @@ interface Props {
 const current_language = getLangFromUrl(Astro.url)
 
 const { name, href } = Astro.props
-let trailingSlash = ''
-if (href !== '') trailingSlash = '/'
 ---
 
-<astro-navbar-selector data-href={href} data-lang={current_language} class="flex items-center">
+<astro-navbar-item data-href={href} data-lang={current_language} class="navbar-link flex items-center ml-5 sm:ml-0">
 	<a
-		href=`/portfolio/${current_language}/${href}${trailingSlash}`
-		class="relative z-20 transition-all hover:text-[#b14eab] hover:underline"
+		href=`${Astro.url}${href}`
+		class="relative z-20 transition-all hover:text-rose-400 hover:underline"
 		>{name}</a
 	>
-</astro-navbar-selector>
+</astro-navbar-item>
 
 <script>
 	import feather from 'feather-icons'
-	class AstroNavbarSelector extends HTMLElement {
+	class AstroNavbarItem extends HTMLElement {
 		constructor() {
 			super()
 
-			const current_link = new URL(window.location.href).pathname.split(
-				`/`
-			)[3]
-			const is_current_link = current_link === this.dataset.href
-			if (is_current_link) {
-				this.style.color = '#b14eab'
-				this.innerHTML += feather.icons["chevrons-left"].toSvg()
-			}
+			
 		}
 	}
 
-	customElements.define('astro-navbar-selector', AstroNavbarSelector)
+	customElements.define('astro-navbar-item', AstroNavbarItem)
 </script>

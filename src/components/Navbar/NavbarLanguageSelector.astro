@@ -9,9 +9,8 @@ for (let [key, _value] of Object.entries(language_list)) {
 	languages.push(key)
 }
 
-function createRedirect(language: string) {
-	const current_path = Astro.url.pathname.split(`/`)[3]
-	return `/portfolio/${language}/${current_path ? current_path + '/' : ''}`
+function createRedirect(language: string) {	
+	return `/portfolio/${language}/`
 }
 ---
 
@@ -21,13 +20,13 @@ function createRedirect(language: string) {
 			languages.map((language) => {
 				if(language == current_language)
 					return (
-						<li class="py-1 px-2 outline-white bg-[#b14eab]">
+						<li class="py-1 px-2 outline-white bg-rose-400">
 							{language}
 						</li>
 					)
 				return (
 					<li class="py-1 px-2 outline-white">
-						<a class="underline" href={createRedirect(language)}>{language}</a>
+						<a class="underline hover:text-rose-400 transition" href={createRedirect(language)}>{language}</a>
 					</li>
 				)
 			})
