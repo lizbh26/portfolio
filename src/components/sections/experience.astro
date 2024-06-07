@@ -1,8 +1,7 @@
 ---
 import feather from 'feather-icons'
 import Accordion from '../../components/Accordion.astro'
-import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
-import ProgressBar from '../ProgressBar.astro'
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
 
 const current_language = getLangFromUrl(Astro.url)
 const t = useTranslations(current_language)
