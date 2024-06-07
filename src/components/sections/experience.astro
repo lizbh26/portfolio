@@ -1,0 +1,216 @@
+---
+import feather from 'feather-icons'
+import Accordion from '../../components/Accordion.astro'
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
+import ProgressBar from '../ProgressBar.astro'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
+
+const tech_skills = [
+	'astro',
+	'bootstrap',
+	'django',
+	'flask',
+	'git',
+	'golang',
+	'java',
+	'jquery',
+	'linux',
+	'mysql',
+	'nextjs',
+	'node',
+	'python',
+	'react',
+	'tailwind',
+	'ts',
+	'webdev',
+]
+---
+
+<style>
+	h1,
+	h2 {
+		font-family: 'Salsa', cursive;
+		font-weight: bold;
+	}
+
+	.logo {
+		filter: grayscale(100%);
+		transition: filter 0.5s;
+	}
+	.logo:hover {
+		filter: grayscale(0%);
+	}
+</style>
+<section id="experience" class="-mb-24 pt-32">
+	<div class="mb-5 flex flex-col items-center justify-center">
+		<div class="sm:mx-2 sm:w-5/6 lg:w-4/5">
+			<div class="flex flex-col gap-4 md:flex-row md:gap-12">
+				<div
+					class="mx-2 flex h-fit flex-row md:w-1/2"
+					id="work-history"
+				>
+					<div
+						id="fancy-line"
+						class="flex flex-col items-center justify-center"
+					>
+						<div class="">
+							<div
+								class="h-8 w-8 rounded-full border-4 border-rose-400"
+							>
+							</div>
+						</div>
+						<div
+							class="h-full w-1 rounded-b-md border-2 border-rose-400"
+						>
+						</div>
+					</div>
+					<div class="ml-2">
+						<h2 class="flex gap-2 text-2xl uppercase text-rose-400">
+							{t('experience.title')}
+							<span
+								class="flex items-center"
+								set:html={feather.icons.briefcase.toSvg({
+									class: 'text-rose-400 inline',
+								})}
+							/>
+						</h2>
+						<div class="my-2 flex flex-col">
+							<!-- <Accordion title={t('experience.campustalk.title')} startDate={t('experience.campustalk.date-started')} endDate={t('experience.campustalk.date-finished')} skills={["Golang", "Server Architecture", "MySQL", "REST & CORS", "Cloud", "TypeScript", "React", "React Native", "Mobile Dev"]}>
+								<p>
+									{t('experience.campustalk.body')}
+								</p>
+							</Accordion> -->
+							<Accordion
+								title={t('experience.practicasprofesionales.title')}
+								startDate={t(
+									'experience.practicasprofesionales.date-started'
+								)}
+								endDate={t(
+									'experience.practicasprofesionales.date-finished'
+								)}
+								skills={[
+									'Python',
+									'Django',
+									'MySQL',
+									'DigitalOcean',
+									'Apache Server',
+									'Agile',
+								]}
+							>
+								<p
+									class="text-justify"
+									set:html={t(
+										'experience.practicasprofesionales.body'
+									)}
+								/>
+							</Accordion>
+							<Accordion
+								title={t('experience.ibm-internship.title')}
+								startDate={t(
+									'experience.ibm-internship.date-started'
+								)}
+								endDate={t(
+									'experience.ibm-internship.date-finished'
+								)}
+								skills={[
+									'Agile',
+									'Scrum',
+									'Design Thinking',
+									'Github Enterprise',
+									'Jira',
+									'Docker',
+									'UI/UX',
+									'Soft Skills',
+								]}
+							>
+								<p set:html={t('experience.ibm-internship.body')} />
+							</Accordion>
+						</div>
+					</div>
+				</div>
+				<div id="technical-skills" class="md:w-3/5">
+					<h2
+						class="flex items-start gap-2 text-2xl uppercase text-rose-400"
+					>
+						<span class="w-fit"
+							>{t('experience.technical-skills.title')}
+						</span>
+						<span
+							class="mt-1 flex items-center"
+							set:html={feather.icons.cpu.toSvg({
+								class: 'text-rose-400 inline',
+							})}
+						/>
+					</h2>
+					<h3>{t('experience.technical-skills.intro')} 😊</h3>
+					<!-- <ul class="grid min-[530px]:grid-cols-2 min-[530px]:gap-4 mt-2">
+						<div>
+							<li>
+								<ProgressBar image_url='webdev-logo.png' percentage={90} name='Web Technologies' />
+							</li>
+							<li>
+								<ProgressBar image_url='tailwind-logo.png' percentage={88} name='Tailwind CSS'/>
+							</li>
+							<li>
+								<ProgressBar image_url='ts-logo.png' percentage={85} name='TypeScript'/>
+							</li>
+							<li>
+								<ProgressBar image_url='astro-logo.png' percentage={80} name='AstroJS'/>
+							</li>
+							<li>
+								<ProgressBar image_url='react-logo.png' percentage={72} name='React'/>
+							</li>
+							<li>
+								<ProgressBar image_url='python-logo.png' percentage={70} name='Python'/>
+							</li>
+							<li>
+								<ProgressBar image_url='golang-logo.png' percentage={68} name='Golang'/>
+							</li>
+						</div>
+						<div>
+							<li>
+								<ProgressBar image_url='git-logo.png' percentage={65} name='Git'/>
+							</li>
+							<li>
+								<ProgressBar image_url='jquery-logo.png' percentage={65} name='JQuery'/>
+							</li>
+							<li>
+								<ProgressBar image_url='django-logo.png' percentage={60} name='Django'/>
+							</li>
+							<li>
+								<ProgressBar image_url='mysql-logo.png' percentage={55} name='MySQL'/>
+							</li>
+							<li>
+								<ProgressBar image_url='bootstrap-logo.png' percentage={50} name='Bootstrap'/>
+							</li>
+							<li>
+								<ProgressBar image_url='flask-logo.png' percentage={45} name='Flask'/>
+							</li>
+							<li>
+								<ProgressBar image_url='java-logo.png' percentage={40} name='Java'/>
+							</li>
+						</div>
+					</ul> -->
+					<ul
+						class="mt-4 grid grid-cols-4 gap-4 min-[450px]:grid-cols-5 sm:grid-cols-6 md:grid-cols-5 lg:grid-cols-7"
+					>
+						{
+							tech_skills.map((tech) => (
+								<li>
+									<img
+										class="logo"
+										src={`/portfolio/img/skills/${tech}.png`}
+										alt={tech}
+										title={tech}
+									/>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

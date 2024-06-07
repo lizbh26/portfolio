@@ -1,0 +1,50 @@
+---
+import feather from 'feather-icons'
+
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
+---
+
+<style>
+	h1 {
+		font-family: 'Salsa', cursive;
+	}
+</style>
+
+<section id="contact-me" class="mt-40 mb-20">
+	<div class="flex justify-center flex-col w-full">
+		<div class="mb-2">
+			<h1 class="mb-2 w-full text-center text-4xl text-rose-400 flex gap-2 items-center justify-center">
+				{t('contact-me.title')}
+				<span class="flex items-center" set:html={feather.icons.phone.toSvg({class:"text-rose-400 inline"})}></span>
+			</h1>
+			<h2
+				class="w-full text-center text-xl"
+				set:html={t('contact-me.subtitle-1')}
+			/>
+			<p class="w-full text-center">
+				{t('contact-me.subtitle-2')}
+			</p>
+		</div>
+
+		<div class="flex w-full flex-col sm:w-auto">
+			<div class="flex justify-center">
+				<div class="my-4 flex w-min flex-col gap-2">
+					<div class="flex gap-2 justify-center hover:text-rose-400 transition">
+						<div set:html={feather.icons.mail.toSvg()} />
+						<a href="mailto:26ashley.lizbeth@gmail.com" class=""
+							>26ashley.lizbeth@gmail.com</a
+						>
+					</div>
+					<div class="flex gap-2 justify-center">
+						<div set:html={feather.icons['map-pin'].toSvg()} />
+						<p>Zapopan, Jalisco</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>

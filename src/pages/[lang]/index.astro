@@ -1,35 +1,23 @@
 ---
-import Layout from '../../layouts/Layout.astro'
+import Layout from "../../layouts/Layout.astro";
 
-import { useTranslations } from '../../i18n/languagePicker'
-import type { languages } from '../../i18n/languages'
+import AboutMe from "../../components/sections/about-me.astro";
+import Experience from "../../components/sections/experience.astro";
+import Work from "../../components/sections/work.astro";
+import ContactMe from "../../components/sections/contact-me.astro";
+import Footer from "../../components/sections/footer.astro";
 
 export function getStaticPaths() {
 	return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }]
 }
-
-const { lang } = Astro.params
-const t = useTranslations(lang as languages)
 ---
 
-<style>
-	#title > h1 {
-		font-family: 'Caprasimo', serif;
-	}
-	#title > p {
-		font-family: 'Salsa', cursive;
-	}
-</style>
-
 <Layout title="Ashley Lizbeth - Portfolio">
-	<div class="pt-28 p-10 w-full flex flex-col justify-center text-center">
-		<div
-			id="title"
-			class="text-center"
-		>
-			<h1 class="text-6xl">Ashley Lizbeth</h1>
-			<p class="text-[#b14eab]">{t('home.tagline')}</p>
-		</div>
-	</div>
-	<p class="text-center">{t('empty-page')}</p>
+    <div class="px-10">
+        <AboutMe />
+        <Experience />
+        <Work />
+        <ContactMe />
+    </div>
+    <Footer />
 </Layout>

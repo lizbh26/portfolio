@@ -1,0 +1,61 @@
+---
+import feather from 'feather-icons'
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
+import MusicDisk from '../MusicDisk.svelte'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
+---
+
+<style>
+	h1, h2{
+		font-family: 'Salsa', cursive;
+		font-weight: bold;
+	}
+	#about-me-body > p {
+		margin-bottom: 1rem;
+		text-align: justify;
+	}
+</style>
+
+<section id="about-me" class="pt-32 flex flex-col justify-center items-center -mb-24">
+	<div class="sm:mx-2 sm:w-5/6 lg:w-3/5">
+		<div class="flex flex-col md:flex-row md:justify-between md:gap-4">
+			<div class="mb-10 md:w-3/5" id="about-me-title">
+				<div class="flex flex-col justify-center items-center">
+					<h1 class="text-4xl sm:text-5xl md:text-4xl text-center" set:html={t('about-me.welcome')}></h1>
+			
+					<p class="mt-2 text-center" set:html={t('about-me.tagline')}></p>
+	
+					<div class="flex gap-2 p-2 mt-4 rounded-full border-rose-600 border-2 w-2/3">
+						<p class="flex gap-2 rounded-full w-1/2 justify-center items-center"><span set:html={feather.icons.globe.toSvg({class:"text-white"})}></span> México</p>
+						<p class="flex gap-2 rounded-full w-1/2 justify-center items-center"><span set:html={feather.icons.gift.toSvg({class:"text-white"})}></span> 26/11 </p>
+					</div>
+					
+					<div class="p-10 pb-0 w-full h-full flex justify-center">
+						<MusicDisk client:only />
+					</div>
+				</div>
+			</div>
+			<div id="about-me-body" class="md:w-2/5">
+				<h2 class="text-2xl uppercase text-rose-400 flex gap-2">{t('about-me.title')} <span class="flex items-center" set:html={feather.icons.book.toSvg({class:"text-rose-400 inline"})}></span> </h2>	
+				<p set:html={t('about-me.paragraph-1')}>
+					
+				</p>
+				<p set:html={t('about-me.paragraph-2')}>
+					
+				</p>
+				<p set:html={t('about-me.paragraph-3')}>
+					
+				</p>	
+			</div>
+		</div>
+		
+	
+		<div class="hidden">
+			<h2>Inspiration</h2>
+			<p>Technical showcase inspired by Bettany Chang's portfolio v1</p>
+			<p>Particle background logic from Rémi Denimal's codepen: https://codepen.io/remid/pen/OgYjYV</p>
+		</div>
+	</div>
+</section>
