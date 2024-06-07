@@ -11,13 +11,7 @@ const { title } = Astro.props
 import Navbar from '../components/Navbar/NavbarBody.astro'
 ---
 
-<style>
-	body {
-		overflow-x: hidden;
-	}
-</style>
-
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/portfolio/favicon.png" />
@@ -32,10 +26,8 @@ import Navbar from '../components/Navbar/NavbarBody.astro'
 		/>
 		<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"
 		></script>
-		<script is:inline src="https://www.google.com/recaptcha/api.js"
-		></script>
 	</head>
-	<body class="bg-black text-white">
+	<body class="bg-neutral-900 text-white overflow-x-hidden">
 		<Navbar />
 		<slot />
 	</body>
