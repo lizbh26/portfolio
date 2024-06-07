@@ -3,9 +3,10 @@ interface Props {
     title: string
     startDate: string
     endDate?: string
+    skills?: string[]
 }
 
-const {title, startDate, endDate = null} = Astro.props
+const {title, startDate, endDate = null, skills = []} = Astro.props
 ---
 
 <style>
@@ -28,7 +29,15 @@ const {title, startDate, endDate = null} = Astro.props
     </div>
     <hr>
     <div class="accordion-body overflow-hidden px-4 rounded-b-sm border-b">
-        <slot />
+        <div class="my-2">
+            <slot />
+            {skills.length > 0
+                ? (<div class="flex gap-2 my-2 w-full flex-wrap text-sm">
+                    {skills.map(skill => (<div class=" px-2 py-1 rounded-full bg-rose-800 text-rose-100">{skill}</div> ))}
+                </div>)
+                : (<></>)  
+            }
+        </div>
     </div>
 </astro-accordion>
 
