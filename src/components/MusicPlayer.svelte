@@ -56,6 +56,9 @@
 					current_title = song.title
 					requestAnimationFrame(step)
 				},
+				onseek: () => {
+					requestAnimationFrame(step)
+				},
 				onend: skipForward,
 			})
 		}
@@ -97,7 +100,7 @@
 	function step() {
 		if (!current_sound) return
 
-		const time_played = current_sound.seek()
+		const time_played = current_sound.seek() || 0
 		current_time_played = formatTime(Math.round(time_played))
 
 		current_percentage_played =
@@ -105,6 +108,12 @@
 
 		if (current_sound.playing()) {
 			requestAnimationFrame(step)
+		}
+	}
+
+	function seek(percentage: number) {
+		if(current_sound){
+			current_sound.seek(current_sound.duration() * (percentage / 100))
 		}
 	}
 
@@ -207,7 +216,7 @@
 								type="range"
 								min="0"
 								max="100"
-								class="w-24 ml-1"
+								class="w-24 ml-1 cursor-pointer"
 								style={`background-size: ${volume}% 100%`}
 								bind:value={volume}
 							/>
@@ -217,7 +226,29 @@
 						</div>
 					</button>
 				</div>
-				<div class="w-full relative h-full">
+				<button
+						id="song-progress-wrapper"
+						class="w-full relative h-full cursor-pointer"
+						on:click={(e) => {
+							const player = document.getElementById(
+								'song-progress-wrapper',
+							)
+							if (!player) return
+
+							const player_width = player.clientWidth
+							const player_left_offset =
+								window.innerWidth - player_width
+
+							const coord_x = e.clientX
+							const percentage_of_movement = Math.round(
+								((coord_x - player_left_offset) /
+									player_width) *
+									100,
+							)
+
+							seek(percentage_of_movement)
+						}}
+					>
 					<div
 						id="song-progress"
 						class="bg-rose-800 z-0 absolute w-full h-full py-2 transition-all duration-200"
@@ -230,7 +261,7 @@
 						<span>{current_title}</span>
 						<span id="song-duration">{current_duration}</span>
 					</div>
-				</div>
+				</button>
 			</div>
 		</div>
 	</div>
