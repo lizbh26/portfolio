@@ -1,7 +1,7 @@
 ---
 import feather from 'feather-icons'
 import Accordion from '../../components/Accordion.astro'
-import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
 
 const current_language = getLangFromUrl(Astro.url)
 const t = useTranslations(current_language)
@@ -76,18 +76,15 @@ const tech_skills = [
 							/>
 						</h2>
 						<div class="my-2 flex flex-col">
-							<!-- <Accordion title={t('experience.campustalk.title')} startDate={t('experience.campustalk.date-started')} endDate={t('experience.campustalk.date-finished')} skills={["Golang", "Server Architecture", "MySQL", "REST & CORS", "Cloud", "TypeScript", "React", "React Native", "Mobile Dev"]}>
-								<p>
-									{t('experience.campustalk.body')}
-								</p>
-							</Accordion> -->
 							<Accordion
-								title={t('experience.practicasprofesionales.title')}
+								title={t(
+									'experience.practicasprofesionales.title',
+								)}
 								startDate={t(
-									'experience.practicasprofesionales.date-started'
+									'experience.practicasprofesionales.date-started',
 								)}
 								endDate={t(
-									'experience.practicasprofesionales.date-finished'
+									'experience.practicasprofesionales.date-finished',
 								)}
 								skills={[
 									'Python',
@@ -101,17 +98,17 @@ const tech_skills = [
 								<p
 									class="text-justify"
 									set:html={t(
-										'experience.practicasprofesionales.body'
+										'experience.practicasprofesionales.body',
 									)}
 								/>
 							</Accordion>
 							<Accordion
 								title={t('experience.ibm-internship.title')}
 								startDate={t(
-									'experience.ibm-internship.date-started'
+									'experience.ibm-internship.date-started',
 								)}
 								endDate={t(
-									'experience.ibm-internship.date-finished'
+									'experience.ibm-internship.date-finished',
 								)}
 								skills={[
 									'Agile',
@@ -124,7 +121,11 @@ const tech_skills = [
 									'Soft Skills',
 								]}
 							>
-								<p set:html={t('experience.ibm-internship.body')} />
+								<p
+									set:html={t(
+										'experience.ibm-internship.body',
+									)}
+								/>
 							</Accordion>
 						</div>
 					</div>
@@ -144,54 +145,6 @@ const tech_skills = [
 						/>
 					</h2>
 					<h3>{t('experience.technical-skills.intro')} 😊</h3>
-					<!-- <ul class="grid min-[530px]:grid-cols-2 min-[530px]:gap-4 mt-2">
-						<div>
-							<li>
-								<ProgressBar image_url='webdev-logo.png' percentage={90} name='Web Technologies' />
-							</li>
-							<li>
-								<ProgressBar image_url='tailwind-logo.png' percentage={88} name='Tailwind CSS'/>
-							</li>
-							<li>
-								<ProgressBar image_url='ts-logo.png' percentage={85} name='TypeScript'/>
-							</li>
-							<li>
-								<ProgressBar image_url='astro-logo.png' percentage={80} name='AstroJS'/>
-							</li>
-							<li>
-								<ProgressBar image_url='react-logo.png' percentage={72} name='React'/>
-							</li>
-							<li>
-								<ProgressBar image_url='python-logo.png' percentage={70} name='Python'/>
-							</li>
-							<li>
-								<ProgressBar image_url='golang-logo.png' percentage={68} name='Golang'/>
-							</li>
-						</div>
-						<div>
-							<li>
-								<ProgressBar image_url='git-logo.png' percentage={65} name='Git'/>
-							</li>
-							<li>
-								<ProgressBar image_url='jquery-logo.png' percentage={65} name='JQuery'/>
-							</li>
-							<li>
-								<ProgressBar image_url='django-logo.png' percentage={60} name='Django'/>
-							</li>
-							<li>
-								<ProgressBar image_url='mysql-logo.png' percentage={55} name='MySQL'/>
-							</li>
-							<li>
-								<ProgressBar image_url='bootstrap-logo.png' percentage={50} name='Bootstrap'/>
-							</li>
-							<li>
-								<ProgressBar image_url='flask-logo.png' percentage={45} name='Flask'/>
-							</li>
-							<li>
-								<ProgressBar image_url='java-logo.png' percentage={40} name='Java'/>
-							</li>
-						</div>
-					</ul> -->
 					<ul
 						class="mt-4 grid grid-cols-4 gap-4 min-[450px]:grid-cols-5 sm:grid-cols-6 md:grid-cols-5 lg:grid-cols-7"
 					>
