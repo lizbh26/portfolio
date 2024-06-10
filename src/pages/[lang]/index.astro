@@ -1,11 +1,11 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from '../../layouts/Layout.astro'
 
-import AboutMe from "../../components/sections/about-me.astro";
-import Experience from "../../components/sections/experience.astro";
-import Work from "../../components/sections/work.astro";
-import ContactMe from "../../components/sections/contact-me.astro";
-import Footer from "../../components/sections/footer.astro";
+import AboutMe from '../../components/sections/about-me.astro'
+import Experience from '../../components/sections/experience.astro'
+import Work from '../../components/sections/work.astro'
+import ContactMe from '../../components/sections/contact-me.astro'
+import Footer from '../../components/sections/footer.astro'
 
 export function getStaticPaths() {
 	return [{ params: { lang: 'en' } }, { params: { lang: 'es' } }]
@@ -13,10 +13,10 @@ export function getStaticPaths() {
 ---
 
 <Layout title="Ashley Lizbeth - Portfolio">
-    <div class="px-10">
-        <AboutMe />
-        <Experience />
-        <ContactMe />
-    </div>
-    <Footer />
+	<div class="px-10">
+		<AboutMe />
+		<Experience />
+		<ContactMe />
+	</div>
+	<Footer />
 </Layout>

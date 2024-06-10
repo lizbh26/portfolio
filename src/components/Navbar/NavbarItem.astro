@@ -10,7 +10,11 @@ const current_language = getLangFromUrl(Astro.url)
 const { name, href } = Astro.props
 ---
 
-<astro-navbar-item data-href={href} data-lang={current_language} class="navbar-link flex items-center ml-5 sm:ml-0">
+<astro-navbar-item
+	data-href={href}
+	data-lang={current_language}
+	class="navbar-link ml-5 flex items-center sm:ml-0"
+>
 	<a
 		href=`${Astro.url}${href}`
 		class="relative z-20 transition-all hover:text-rose-400 hover:underline"
@@ -23,8 +27,6 @@ const { name, href } = Astro.props
 	class AstroNavbarItem extends HTMLElement {
 		constructor() {
 			super()
-
-			
 		}
 	}
 

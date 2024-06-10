@@ -112,7 +112,7 @@
 	}
 
 	function seek(percentage: number) {
-		if(current_sound){
+		if (current_sound) {
 			current_sound.seek(current_sound.duration() * (percentage / 100))
 		}
 	}
@@ -138,95 +138,101 @@
 </script>
 
 {#if !!current_sound}
-<div
-	id="player"
-	class="fixed z-50 bottom-0 left-0 w-full"
-	transition:fly={{ y: 200, duration: 600 }}
->
-	<div class="flex justify-center items-center w-full">
-		<div class="bg-rose-600 w-full">
-			<div
-				id="song-player-controls"
-				class="flex items-center flex-col-reverse sm:flex-row"
-			>
+	<div
+		id="player"
+		class="fixed z-50 bottom-0 left-0 w-full"
+		transition:fly={{ y: 200, duration: 600 }}
+	>
+		<div class="flex justify-center items-center w-full">
+			<div class="bg-rose-600 w-full">
 				<div
-					class="flex items-center justify-center sm:w-min gap-1 border-t-2 sm:border-t-0 sm:border-r-2 border-white py-2 sm:px-5 w-full transition-all"
+					id="song-player-controls"
+					class="flex items-center flex-col-reverse sm:flex-row"
 				>
-					<button
-						id="song-previous"
-						class="scale-75 disabled:text-gray-300 disabled:cursor-not-allowed"
-						disabled={index <= 0}
-						on:click={skipBack}
-						>{@html feather.icons['skip-back'].toSvg()}</button
-					>
-					<button id="song-play" class="" on:click={ToggleMusic}
-						>{@html playing
-							? feather.icons.pause.toSvg()
-							: feather.icons.play.toSvg()}</button
-					>
-					<button
-						id="song-next"
-						class="scale-75 disabled:text-gray-300 disabled:cursor-not-allowed"
-						disabled={index + 1 >= numberOfSongs}
-						on:click={skipForward}
-						>{@html feather.icons['skip-forward'].toSvg()}</button
-					>
-					<button
-						id="song-stop"
-						class="mx-4 disabled:text-gray-300 disabled:cursor-not-allowed"
-						disabled={!current_sound}
-						on:click={stop}
-					>
-						{@html feather.icons['stop-circle'].toSvg({color:"white"})}
-					</button>
-					<button
-						id="song-volume"
-						class="flex transition cursor-default"
-						on:mouseenter={() => (is_volume_slider_showing = true)}
-						on:mouseleave={() => (is_volume_slider_showing = false)}
+					<div
+						class="flex items-center justify-center sm:w-min gap-1 border-t-2 sm:border-t-0 sm:border-r-2 border-white py-2 sm:px-5 w-full transition-all"
 					>
 						<button
-							on:pointerup={(e) => {
-								console.log(e)
-
-								if (e.pointerType === 'touch') {
-									is_volume_slider_showing =
-										!is_volume_slider_showing
-								} else {
-									if (volume === 0) setVolume(50)
-									else setVolume(0)
-								}
-							}}
-							class="flex items-center w-6"
+							id="song-previous"
+							class="scale-75 disabled:text-gray-300 disabled:cursor-not-allowed"
+							disabled={index <= 0}
+							on:click={skipBack}
+							>{@html feather.icons['skip-back'].toSvg()}</button
 						>
-							{@html feather.icons[
-								volume === 0
-									? 'volume-x'
-									: volume <= 50
-										? 'volume-1'
-										: 'volume-2'
-							].toSvg()}
+						<button id="song-play" class="" on:click={ToggleMusic}
+							>{@html playing
+								? feather.icons.pause.toSvg()
+								: feather.icons.play.toSvg()}</button
+						>
+						<button
+							id="song-next"
+							class="scale-75 disabled:text-gray-300 disabled:cursor-not-allowed"
+							disabled={index + 1 >= numberOfSongs}
+							on:click={skipForward}
+							>{@html feather.icons[
+								'skip-forward'
+							].toSvg()}</button
+						>
+						<button
+							id="song-stop"
+							class="mx-4 disabled:text-gray-300 disabled:cursor-not-allowed"
+							disabled={!current_sound}
+							on:click={stop}
+						>
+							{@html feather.icons['stop-circle'].toSvg({
+								color: 'white',
+							})}
 						</button>
-						<div
-							class={`flex gap-1 items-center focus:outline-none overflow-hidden ${is_volume_slider_showing ? 'max-w-32' : 'max-w-0'}`}
-							style="transition: max-width 0.2s ease-out;"
+						<button
+							id="song-volume"
+							class="flex transition cursor-default"
+							on:mouseenter={() =>
+								(is_volume_slider_showing = true)}
+							on:mouseleave={() =>
+								(is_volume_slider_showing = false)}
 						>
-							<input
-								id="song-volume-slider"
-								type="range"
-								min="0"
-								max="100"
-								class="w-24 ml-1 cursor-pointer"
-								style={`background-size: ${volume}% 100%`}
-								bind:value={volume}
-							/>
-							<p class="text-sm w-6">
-								{volume}
-							</p>
-						</div>
-					</button>
-				</div>
-				<button
+							<button
+								on:pointerup={(e) => {
+									console.log(e)
+
+									if (e.pointerType === 'touch') {
+										is_volume_slider_showing =
+											!is_volume_slider_showing
+									} else {
+										if (volume === 0) setVolume(50)
+										else setVolume(0)
+									}
+								}}
+								class="flex items-center w-6"
+							>
+								{@html feather.icons[
+									volume === 0
+										? 'volume-x'
+										: volume <= 50
+											? 'volume-1'
+											: 'volume-2'
+								].toSvg()}
+							</button>
+							<div
+								class={`flex gap-1 items-center focus:outline-none overflow-hidden ${is_volume_slider_showing ? 'max-w-32' : 'max-w-0'}`}
+								style="transition: max-width 0.2s ease-out;"
+							>
+								<input
+									id="song-volume-slider"
+									type="range"
+									min="0"
+									max="100"
+									class="w-24 ml-1 cursor-pointer"
+									style={`background-size: ${volume}% 100%`}
+									bind:value={volume}
+								/>
+								<p class="text-sm w-6">
+									{volume}
+								</p>
+							</div>
+						</button>
+					</div>
+					<button
 						id="song-progress-wrapper"
 						class="w-full relative h-full cursor-pointer"
 						on:click={(e) => {
@@ -249,23 +255,25 @@
 							seek(percentage_of_movement)
 						}}
 					>
-					<div
-						id="song-progress"
-						class="bg-rose-800 z-0 absolute w-full h-full py-2 transition-all duration-200"
-						style={`width: ${current_percentage_played}%`}
-					></div>
-					<div
-						class="flex w-full justify-between px-5 py-2 z-10 relative"
-					>
-						<span id="song-time-played">{current_time_played}</span>
-						<span>{current_title}</span>
-						<span id="song-duration">{current_duration}</span>
-					</div>
-				</button>
+						<div
+							id="song-progress"
+							class="bg-rose-800 z-0 absolute w-full h-full py-2 transition-all duration-200"
+							style={`width: ${current_percentage_played}%`}
+						></div>
+						<div
+							class="flex w-full justify-between px-5 py-2 z-10 relative"
+						>
+							<span id="song-time-played"
+								>{current_time_played}</span
+							>
+							<span>{current_title}</span>
+							<span id="song-duration">{current_duration}</span>
+						</div>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 {/if}
 
 <style>

@@ -1,8 +1,8 @@
 export const language_list = {
-    en: "English",
-    es: "Español"
+	en: 'English',
+	es: 'Español',
 }
 
 export type languages = keyof typeof language_list
 
-export const default_language = "en"
+export const default_language = 'en'

@@ -8,7 +8,8 @@ const t = useTranslations(current_language)
 ---
 
 <style>
-	h1, h2{
+	h1,
+	h2 {
 		font-family: 'Salsa', cursive;
 		font-weight: bold;
 	}
@@ -18,36 +19,65 @@ const t = useTranslations(current_language)
 	}
 </style>
 
-<section id="about-me" class="pt-32 flex flex-col justify-center items-center -mb-24">
+<section
+	id="about-me"
+	class="-mb-24 flex flex-col items-center justify-center pt-32"
+>
 	<div class="sm:mx-2 sm:w-5/6 lg:w-3/5">
 		<div class="flex flex-col md:flex-row md:justify-between md:gap-4">
 			<div class="mb-10 md:w-3/5" id="about-me-title">
-				<div class="flex flex-col justify-center items-center">
-					<h1 class="text-4xl sm:text-5xl md:text-4xl text-center" set:html={t('about-me.welcome')}></h1>
-			
-					<p class="mt-2 text-center" set:html={t('about-me.tagline')}></p>
-	
-					<div class="flex gap-2 p-2 mt-4 rounded-full border-rose-600 border-2 w-2/3">
-						<p class="flex gap-2 rounded-full w-1/2 justify-center items-center"><span set:html={feather.icons.globe.toSvg({class:"text-white"})}></span> México</p>
-						<p class="flex gap-2 rounded-full w-1/2 justify-center items-center"><span set:html={feather.icons.gift.toSvg({class:"text-white"})}></span> 26/11 </p>
+				<div class="flex flex-col items-center justify-center">
+					<h1
+						class="text-center text-4xl sm:text-5xl md:text-4xl"
+						set:html={t('about-me.welcome')}
+					/>
+
+					<p
+						class="mt-2 text-center"
+						set:html={t('about-me.tagline')}
+					/>
+
+					<div
+						class="mt-4 flex w-2/3 gap-2 rounded-full border-2 border-rose-600 p-2"
+					>
+						<p
+							class="flex w-1/2 items-center justify-center gap-2 rounded-full"
+						>
+							<span
+								set:html={feather.icons.globe.toSvg({
+									class: 'text-white',
+								})}
+							/> México
+						</p>
+						<p
+							class="flex w-1/2 items-center justify-center gap-2 rounded-full"
+						>
+							<span
+								set:html={feather.icons.gift.toSvg({
+									class: 'text-white',
+								})}
+							/> 26/11
+						</p>
 					</div>
-					
-					<div class="p-10 pb-0 w-full h-full flex justify-center">
+
+					<div class="flex h-full w-full justify-center p-10 pb-0">
 						<MusicDisk client:only />
 					</div>
 				</div>
 			</div>
 			<div id="about-me-body" class="md:w-2/5">
-				<h2 class="text-2xl uppercase text-rose-400 flex gap-2">{t('about-me.title')} <span class="flex items-center" set:html={feather.icons.book.toSvg({class:"text-rose-400 inline"})}></span> </h2>	
-				<p set:html={t('about-me.paragraph-1')}>
-					
-				</p>
-				<p set:html={t('about-me.paragraph-2')}>
-					
-				</p>
-				<p set:html={t('about-me.paragraph-3')}>
-					
-				</p>	
+				<h2 class="flex gap-2 text-2xl uppercase text-rose-400">
+					{t('about-me.title')}
+					<span
+						class="flex items-center"
+						set:html={feather.icons.book.toSvg({
+							class: 'text-rose-400 inline',
+						})}
+					/>
+				</h2>
+				<p set:html={t('about-me.paragraph-1')} />
+				<p set:html={t('about-me.paragraph-2')} />
+				<p set:html={t('about-me.paragraph-3')} />
 			</div>
 		</div>
 	</div>

@@ -24,29 +24,38 @@ const t = useTranslations(current_language)
 	class="fixed z-50 flex w-full items-center justify-center bg-transparent p-8 pb-0 text-xl backdrop-blur"
 >
 	<div class="w-full lg:w-2/3">
-		<div class="mb-2 flex flex-col sm:flex-row sm:justify-around sm:items-end">
+		<div
+			class="mb-2 flex flex-col sm:flex-row sm:items-end sm:justify-around"
+		>
 			<div
 				class="flex w-full flex-col gap-2 pb-2 sm:w-2/3 sm:flex-row sm:justify-between sm:gap-0 md:w-3/5 xl:w-1/2"
-				>
+			>
 				<Item href="#about-me" name={t('about-me.title')} />
-				<hr class=" h-px border-rose-400">
+				<hr class="h-px border-rose-400" />
 				<Item href="#experience" name={t('experience.title')} />
-				<hr class=" h-px border-rose-400">
+				<hr class="h-px border-rose-400" />
 				<Item href="#contact-me" name={t('contact-me.title')} />
 			</div>
 
 			<div
-				class="mb-1 mt-5 px-5 md:px-0 flex w-full items-center justify-around gap-0 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 lg:w-auto lg:pl-20"
+				class="mb-1 mt-5 flex w-full items-center justify-around gap-0 px-5 sm:m-0 sm:w-1/5 sm:items-start sm:justify-end md:w-1/6 md:px-0 lg:w-auto lg:pl-20"
 				id="navbar-menu"
 			>
-				<button class="w-1/2 text-left sm:hidden flex items-center" id="navbar-button">
+				<button
+					class="flex w-1/2 items-center text-left sm:hidden"
+					id="navbar-button"
+				>
 					<span
 						id="navbar-button-icon"
 						class="inline-block rotate-180 text-xl transition-all duration-300"
-						set:html={feather.icons['chevron-down'].toSvg({class:'text-rose-400'})}
-					/>	
+						set:html={feather.icons['chevron-down'].toSvg({
+							class: 'text-rose-400',
+						})}
+					/>
 				</button>
-				<div class="w-1/2 text-right sm:w-auto flex items-center justify-end">
+				<div
+					class="flex w-1/2 items-center justify-end text-right sm:w-auto"
+				>
 					<LanguageSelector />
 				</div>
 			</div>
@@ -81,7 +90,7 @@ const t = useTranslations(current_language)
 		const button_height =
 			$('#navbar-menu').outerHeight(true) ?? handleUndefined()
 		const navbar_bottom_margin = parseInt(
-			$('nav').css('paddingBottom').replace('px', '')
+			$('nav').css('paddingBottom').replace('px', ''),
 		)
 		const offset_height =
 			navbar_height - button_height - navbar_bottom_margin
@@ -117,7 +126,9 @@ const t = useTranslations(current_language)
 			is_navbar_showing ? hideNavbar() : showNavbar(), rotateButton()
 		})
 		$('astro-navbar-item').on('click', () => {
-			window.screen.width < MOBILE_WIDTH_TRESHOLD ? hideNavbar() : undefined
+			window.screen.width < MOBILE_WIDTH_TRESHOLD
+				? hideNavbar()
+				: undefined
 		})
 		rotateButton()
 
@@ -127,7 +138,7 @@ const t = useTranslations(current_language)
 
 	$('#navbar-languages').on('change', (e) => {
 		const current_path = new URL(window.location.href).pathname.split(
-			`/`
+			`/`,
 		)[3]
 		const new_language = $(e.target).find(':selected').val()
 		window.location.href = `/portfolio/${new_language}/${current_path ? current_path + '/' : ''}`

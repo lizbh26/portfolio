@@ -13,12 +13,19 @@ const t = useTranslations(current_language)
 	}
 </style>
 
-<section id="contact-me" class="mt-40 mb-20">
-	<div class="flex justify-center flex-col w-full">
+<section id="contact-me" class="mb-20 mt-40">
+	<div class="flex w-full flex-col justify-center">
 		<div class="mb-2">
-			<h1 class="mb-2 w-full text-center text-4xl text-rose-400 flex gap-2 items-center justify-center">
+			<h1
+				class="mb-2 flex w-full items-center justify-center gap-2 text-center text-4xl text-rose-400"
+			>
 				{t('contact-me.title')}
-				<span class="flex items-center" set:html={feather.icons.phone.toSvg({class:"text-rose-400 inline"})}></span>
+				<span
+					class="flex items-center"
+					set:html={feather.icons.phone.toSvg({
+						class: 'text-rose-400 inline',
+					})}
+				/>
 			</h1>
 			<h2
 				class="w-full text-center text-xl"
@@ -32,19 +39,20 @@ const t = useTranslations(current_language)
 		<div class="flex w-full flex-col sm:w-auto">
 			<div class="flex justify-center">
 				<div class="my-4 flex w-min flex-col gap-2">
-					<div class="flex gap-2 justify-center hover:text-rose-400 transition">
+					<div
+						class="flex justify-center gap-2 transition hover:text-rose-400"
+					>
 						<div set:html={feather.icons.mail.toSvg()} />
 						<a href="mailto:26ashley.lizbeth@gmail.com" class=""
 							>26ashley.lizbeth@gmail.com</a
 						>
 					</div>
-					<div class="flex gap-2 justify-center">
+					<div class="flex justify-center gap-2">
 						<div set:html={feather.icons['map-pin'].toSvg()} />
 						<p>Zapopan, Jalisco</p>
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </section>

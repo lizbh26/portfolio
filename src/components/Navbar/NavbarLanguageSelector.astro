@@ -9,24 +9,29 @@ for (let [key, _value] of Object.entries(language_list)) {
 	languages.push(key)
 }
 
-function createRedirect(language: string) {	
+function createRedirect(language: string) {
 	return `/portfolio/${language}/`
 }
 ---
 
 <div class="flex flex-col items-end justify-start">
-	<ul class="mt-1 flex items-start outline outline-1 rounded">
+	<ul class="mt-1 flex items-start rounded outline outline-1">
 		{
 			languages.map((language) => {
-				if(language == current_language)
+				if (language == current_language)
 					return (
-						<li class="py-1 px-2 outline-white bg-rose-400">
+						<li class="bg-rose-400 px-2 py-1 outline-white">
 							{language}
 						</li>
 					)
 				return (
-					<li class="py-1 px-2 outline-white">
-						<a class="underline hover:text-rose-400 transition" href={createRedirect(language)}>{language}</a>
+					<li class="px-2 py-1 outline-white">
+						<a
+							class="underline transition hover:text-rose-400"
+							href={createRedirect(language)}
+						>
+							{language}
+						</a>
 					</li>
 				)
 			})
