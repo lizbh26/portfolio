@@ -68,7 +68,7 @@ const uiText: uiTextInterface = {
 		'contact-me.subtitle-1': `I'd <span class="align-baseline text-2xl text-red-500">♥</span> to work with you,`,
 		'contact-me.subtitle-2': 'so feel free to drop in and say hello!',
 
-		'footer.credits': `Website design inspired by Brittany Chang's portfolio, <a href="https://v1.brittanychiang.com/" class="underline">version 1</a> and <a href="https://brittanychiang.com/" class="underline">version 4</a>, by <a href="http://findmatthew.com/" class="underline">Matthew Williams' website</a> and by <a href="https://www.lokkeestudios.com" class="underline">Lokee Studios' website</a>.`,
+		'footer.credits': `Website design inspired by Brittany Chang's portfolio, <a target="_blank" href="https://v1.brittanychiang.com/" class="underline">version 1</a> and <a target="_blank" href="https://brittanychiang.com/" class="underline">version 4</a>, by <a target="_blank" href="http://findmatthew.com/" class="underline">Matthew Williams' website</a> and by <a target="_blank" href="https://www.lokkeestudios.com" class="underline">Lokee Studios' website</a>.`,
 	},
 	es: {
 		'about-me.welcome': `Hola! <span class="text-rose-400">Soy Ashley </span> :)`,
@@ -104,7 +104,7 @@ const uiText: uiTextInterface = {
 		'contact-me.subtitle-1': `Me <span class="align-baseline text-2xl text-red-500">♥</span> trabajar contigo,`,
 		'contact-me.subtitle-2': '¡así que no dudes en decirme hola!',
 
-		'footer.credits': `Diseño inspirado por el portafolio de Brittany Chang, <a href="https://v1.brittanychiang.com/" class="underline">versión 1</a> y <a href="https://brittanychiang.com/" class="underline">versión 4</a>, por la página de <a href="http://findmatthew.com/" class="underline">Matthew William</a> y por la página de <a href="https://www.lokkeestudios.com" class="underline">Lokee Studios</a>.`,
+		'footer.credits': `Diseño inspirado por el portafolio de Brittany Chang, <a target="_blank" href="https://v1.brittanychiang.com/" class="underline">versión 1</a> y <a target="_blank" href="https://brittanychiang.com/" class="underline">versión 4</a>, por la página de <a target="_blank" href="http://findmatthew.com/" class="underline">Matthew William</a> y por la página de <a target="_blank" href="https://www.lokkeestudios.com" class="underline">Lokee Studios</a>.`,
 	},
 }
 
