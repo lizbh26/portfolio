@@ -1,16 +1,46 @@
 <script lang="ts">
 	import { Howl } from 'howler'
-	import feather, { icons } from 'feather-icons'
+	import feather from 'feather-icons'
 	import { fly } from 'svelte/transition'
+
+	/**
+	 * Sweden
+	 * Field of hopes and dreams
+	 * Partners - The game is afoot
+	 * Jingle Jangle Jingle
+	 * Pull the trigger
+	 * What's up danger
+	 * Life Will Change
+	 */
 
 	const playlist: Song[] = [
 		{
-			title: 'Song 1',
-			file: 'mus1.mp3',
+			title: 'C418 - Sweden',
+			file: 'C418  - Sweden - Minecraft Volume Alpha.m4a',
 		},
 		{
-			title: 'Phoenix',
-			file: 'mus2.mp3',
+			title: 'Toby Fox - Field of Hopes and Dreams',
+			file: 'Field of Hopes and Dreams.mp3',
+		},
+		{
+			title: 'Yasumasa Kitagawa - Partners! ~ The Game Is Afoot',
+			file: 'Partners! ~ The Game Is Afoot.mp3',
+		},
+		{
+			title: 'Joseph J. Lilley, Frank Loesser - Jingle Jangle Jingle',
+			file: '[I Got Spurs That] Jingle, Jangle, Jingle.mp3',
+		},
+		{
+			title: 'Atsushi Kitajoh - Pull the Trigger',
+			file: 'Persona Q2_ New Cinema Labyrinth – Pull the Trigger.mp3',
+		},
+		{
+			title: 'Lyn - Life Will Change',
+			file: 'Life Will Change.mp3',
+		},
+		{
+			title: "Blackway & Black Caviar - What's Up Danger",
+			file: "Blackway & Black Caviar - What's Up Danger.m4a",
 		},
 	]
 
@@ -120,6 +150,7 @@
 	function stop() {
 		if (current_sound) current_sound.stop()
 		current_sound = undefined
+		index = 0
 		playing = false
 	}
 
