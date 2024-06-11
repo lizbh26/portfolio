@@ -3,16 +3,6 @@
 	import feather from 'feather-icons'
 	import { fly } from 'svelte/transition'
 
-	/**
-	 * Sweden
-	 * Field of hopes and dreams
-	 * Partners - The game is afoot
-	 * Jingle Jangle Jingle
-	 * Pull the trigger
-	 * What's up danger
-	 * Life Will Change
-	 */
-
 	const playlist: Song[] = [
 		{
 			title: 'C418 - Sweden',
