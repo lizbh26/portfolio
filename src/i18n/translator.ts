@@ -19,6 +19,10 @@ interface TranslatableText {
 	'experience.ibm-internship.date-finished': string
 	'experience.ibm-internship.body': string
 
+	'experience.resume.title': string
+	'experience.resume.subtitle': string
+	'experience.resume.button': string
+
 	'experience.technical-skills.title': string
 	'experience.technical-skills.intro': string
 
@@ -60,6 +64,10 @@ const uiText: uiTextInterface = {
 		'experience.ibm-internship.body':
 			'Thanks to a school program, I was able to form part of IBM for 2 months. Here, I learned its culture and its way of working, and I improved my teamwork skills.',
 
+		'experience.resume.title': 'Want to know more?',
+		'experience.resume.subtitle': 'Get a copy of my resume!',
+		'experience.resume.button': 'Download',
+
 		'experience.technical-skills.title': 'Technical skills',
 		'experience.technical-skills.intro':
 			"These are some the technologies I've had the pleasure of going mad with",
@@ -95,6 +103,10 @@ const uiText: uiTextInterface = {
 		'experience.ibm-internship.date-finished': 'Junio 2024',
 		'experience.ibm-internship.body':
 			'Gracias a un programa escolar pude formar parte de IBM por dos meses, aprendiendo su cultura y su forma de trabajar, y mejorando mi forma de relacionarme en un equipo.',
+
+		'experience.resume.title': 'Quieres saber más?',
+		'experience.resume.subtitle': '¡Toma una copia de mi CV!',
+		'experience.resume.button': 'Descargar',
 
 		'experience.technical-skills.title': 'Habilidades técnicas',
 		'experience.technical-skills.intro':
