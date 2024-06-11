@@ -9,11 +9,6 @@ interface TranslatableText {
 	'experience.title': string
 	'experience.intro': string
 
-	'experience.campustalk.title': string
-	'experience.campustalk.date-started': string
-	'experience.campustalk.date-finished': string
-	'experience.campustalk.body': string
-
 	'experience.practicasprofesionales.title': string
 	'experience.practicasprofesionales.date-started': string
 	'experience.practicasprofesionales.date-finished': string
@@ -26,10 +21,6 @@ interface TranslatableText {
 
 	'experience.technical-skills.title': string
 	'experience.technical-skills.intro': string
-	'experience.technical-skills.great': string
-	'experience.technical-skills.good': string
-	'experience.technical-skills.ok': string
-	'experience.technical-skills.mediocre': string
 
 	'contact-me.title': string
 	'contact-me.subtitle-1': string
@@ -57,12 +48,6 @@ const uiText: uiTextInterface = {
 		'experience.title': `Experience`,
 		'experience.intro': `Here are some noteworthy projects I've done and positions I've held`,
 
-		'experience.campustalk.title': 'Project: CampusTalk',
-		'experience.campustalk.date-started': 'March 2023',
-		'experience.campustalk.date-finished': 'halted',
-		'experience.campustalk.body':
-			"My own side project, it's an application meant to improve school administration and comunication with a centralized service. Think of a combination between the accesibility of WhatsApp and the robustness of Slack, and you'll get CampusTalk. Currently in hiatus due to busy schedule.",
-
 		'experience.practicasprofesionales.title': 'Django developer',
 		'experience.practicasprofesionales.date-started': 'August 2023',
 		'experience.practicasprofesionales.date-finished': 'March 2024',
@@ -78,10 +63,6 @@ const uiText: uiTextInterface = {
 		'experience.technical-skills.title': 'Technical skills',
 		'experience.technical-skills.intro':
 			"These are some the technologies I've had the pleasure of going mad with",
-		'experience.technical-skills.great': 'Got the gist of it',
-		'experience.technical-skills.good': 'Knowledgable of',
-		'experience.technical-skills.ok': 'Used it for a bit',
-		'experience.technical-skills.mediocre': 'Acquainted with',
 
 		'contact-me.title': 'Contact me',
 		'contact-me.subtitle-1': `I'd <span class="align-baseline text-2xl text-red-500">♥</span> to work with you,`,
@@ -100,11 +81,6 @@ const uiText: uiTextInterface = {
 		'experience.title': `Experiencia`,
 		'experience.intro': `Algunos proyectos notables en los que he trabajado y puestos que he ocupado.`,
 
-		'experience.campustalk.title': 'Proyecto: CampusTalk',
-		'experience.campustalk.date-started': 'Marzo 2023',
-		'experience.campustalk.date-finished': 'en pausa',
-		'experience.campustalk.body': '',
-
 		'experience.practicasprofesionales.title': 'Desarrolladora Django',
 		'experience.practicasprofesionales.date-started': 'Agosto 2023',
 		'experience.practicasprofesionales.date-finished': 'Marzo 2024',
@@ -118,10 +94,6 @@ const uiText: uiTextInterface = {
 		'experience.technical-skills.title': 'Habilidades técnicas',
 		'experience.technical-skills.intro':
 			'Estas son algunas de las tecnologías con las que he tenido el placer de volverme loca',
-		'experience.technical-skills.great': 'Con experiencia en',
-		'experience.technical-skills.good': 'Conocedora de',
-		'experience.technical-skills.ok': 'Lo use por un rato',
-		'experience.technical-skills.mediocre': 'Lo entiendo',
 
 		'contact-me.title': 'Contáctame',
 		'contact-me.subtitle-1': `Me <span class="align-baseline text-2xl text-red-500">♥</span> trabajar contigo,`,
