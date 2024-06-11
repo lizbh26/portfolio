@@ -45,9 +45,22 @@ const tech_skills = [
 <section id="experience" class="-mb-24 pt-32">
 	<div class="mb-5 flex flex-col items-center justify-center">
 		<div class="sm:mx-2 sm:w-5/6 lg:w-4/5">
-			<div class="flex flex-col gap-4 md:flex-row md:gap-12">
+			<div
+				class="flex w-full flex-col items-center justify-center gap-4 md:gap-12"
+			>
+				<h2
+					class="flex justify-center gap-2 text-4xl uppercase text-rose-400"
+				>
+					{t('experience.title')}
+					<span
+						class="flex items-center"
+						set:html={feather.icons.briefcase.toSvg({
+							class: 'text-rose-400 inline',
+						})}
+					/>
+				</h2>
 				<div
-					class="mx-2 flex h-fit flex-row md:w-1/2"
+					class="mx-2 flex h-fit flex-row md:w-2/3"
 					id="work-history"
 				>
 					<div
@@ -66,15 +79,9 @@ const tech_skills = [
 						</div>
 					</div>
 					<div class="ml-2">
-						<h2 class="flex gap-2 text-2xl uppercase text-rose-400">
-							{t('experience.title')}
-							<span
-								class="flex items-center"
-								set:html={feather.icons.briefcase.toSvg({
-									class: 'text-rose-400 inline',
-								})}
-							/>
-						</h2>
+						<p class="text-gray-300">
+							{t('experience.intro')}
+						</p>
 						<div class="my-2 flex flex-col">
 							<Accordion
 								title={t(
@@ -130,7 +137,7 @@ const tech_skills = [
 						</div>
 					</div>
 				</div>
-				<div id="technical-skills" class="md:w-3/5">
+				<div id="technical-skills" class="md:w-4/5">
 					<h2
 						class="flex items-start gap-2 text-2xl uppercase text-rose-400"
 					>
@@ -146,7 +153,7 @@ const tech_skills = [
 					</h2>
 					<h3>{t('experience.technical-skills.intro')} 😊</h3>
 					<ul
-						class="mt-4 grid grid-cols-4 gap-4 min-[450px]:grid-cols-5 sm:grid-cols-6 md:grid-cols-5 lg:grid-cols-7"
+						class="mt-4 grid grid-cols-4 gap-4 min-[450px]:grid-cols-5 sm:grid-cols-6 lg:grid-cols-9"
 					>
 						{
 							tech_skills.map((tech) => (

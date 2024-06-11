@@ -46,7 +46,7 @@ const uiText: uiTextInterface = {
 		'about-me.paragraph-3': `In my spare time, I advocate for LGBTQ+ rights and feminism, have some light existencial dread for dinner, spend time alone reading or with my friends, and eat tons of cookies in`,
 
 		'experience.title': `Experience`,
-		'experience.intro': `Here are some noteworthy projects I've done and positions I've held`,
+		'experience.intro': `Work history`,
 
 		'experience.practicasprofesionales.title': 'Django developer',
 		'experience.practicasprofesionales.date-started': 'August 2023',
@@ -58,7 +58,7 @@ const uiText: uiTextInterface = {
 		'experience.ibm-internship.date-started': 'May 2024',
 		'experience.ibm-internship.date-finished': 'June 2024',
 		'experience.ibm-internship.body':
-			'Thanks to a school program, I was able to form part of IBM for 2 months. Here, I learned how big teams work and how each individual actor matters. I was tasked with improving the support pages for an internal application, and was freely able to contribute ideas on changes and improvements.',
+			'Thanks to a school program, I was able to form part of IBM for 2 months. Here, I learned its culture and its way of working, and I improved my teamwork skills.',
 
 		'experience.technical-skills.title': 'Technical skills',
 		'experience.technical-skills.intro':
@@ -82,7 +82,7 @@ const uiText: uiTextInterface = {
 			'En mi tiempo libre, defiendo los derechos de las personas LGBTQ+ y apoyo al feminismo, tengo ligeras crisis existenciales mientras desayuno, paso tiempo a solas leyendo o con amigos, y cómo un montón de galletitas en',
 
 		'experience.title': `Experiencia`,
-		'experience.intro': `Algunos proyectos notables en los que he trabajado y puestos que he ocupado.`,
+		'experience.intro': `Historial de trabajo`,
 
 		'experience.practicasprofesionales.title': 'Desarrolladora Django',
 		'experience.practicasprofesionales.date-started': 'Agosto 2023',
@@ -94,7 +94,7 @@ const uiText: uiTextInterface = {
 		'experience.ibm-internship.date-started': 'Mayo 2024',
 		'experience.ibm-internship.date-finished': 'Junio 2024',
 		'experience.ibm-internship.body':
-			'Gracias a un programa escolar, forme parte de IBM por dos meses, aprendiendo su cultura y su forma de trabajar, y mejorando mi forma de relacionarme en un equipos',
+			'Gracias a un programa escolar pude formar parte de IBM por dos meses, aprendiendo su cultura y su forma de trabajar, y mejorando mi forma de relacionarme en un equipo.',
 
 		'experience.technical-skills.title': 'Habilidades técnicas',
 		'experience.technical-skills.intro':
