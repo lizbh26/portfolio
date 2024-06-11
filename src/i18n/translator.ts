@@ -40,10 +40,10 @@ const uiText: uiTextInterface = {
 		'about-me.tagline': `A developer who <strong class="text-rose-400"> cares deeply </strong> about her user's needs`,
 		'about-me.title': `About me`,
 		'about-me.paragraph-1':
-			'A problem solver by nature, I started coding when I was 12 years old, figuring out the ins-and-outs of many technologies and learning restlessly.',
+			'A problem solver by nature, I started coding when I was 12 years old, finding the ins-and-outs of many technologies and learning restlessly.',
 		'about-me.paragraph-2':
 			'Now I want to apply that knowledge to the service of others, by building software that helps improve the lives of people and helps us solve the problems that stop us from improving.',
-		'about-me.paragraph-3': `In my spare time, I advocate for LGBTQ+ rights and feminism, have some light existencial dread for dinner, spend time alone reading or with my friends, and eat tons of cookies in <a class="text-rose-400" href="https://orteil.dashnet.org/cookieclicker/" target="_blank">Cookie Clicker</a> 🍪.`,
+		'about-me.paragraph-3': `In my spare time, I advocate for LGBTQ+ rights and feminism, have some light existencial dread for dinner, spend time alone reading or with my friends, and eat tons of cookies in`,
 
 		'experience.title': `Experience`,
 		'experience.intro': `Here are some noteworthy projects I've done and positions I've held`,
@@ -74,9 +74,9 @@ const uiText: uiTextInterface = {
 		'about-me.welcome': `Hola! <span class="text-rose-400">Soy Ashley </span> :)`,
 		'about-me.tagline': `Una desarrolladora que se preocupa <strong class="text-rose-400"> inmensamente </strong> por las necesidades de sus usuarios`,
 		'about-me.title': `Acerca de mí`,
-		'about-me.paragraph-1': '',
-		'about-me.paragraph-2': '',
-		'about-me.paragraph-3': '',
+		'about-me.paragraph-1': 'Siempre una amante de resolver problemas lógicos, encontré mi pasión por la programación como una manera de usar lógica y abstracciones para generar resultados físicos desde que tenía 12 años, aprendiendo sin descanso y probando muchas tecnologías.',
+		'about-me.paragraph-2': 'Ahora, quiero aplicar ese conocimiento para el servicio de otros, construyendo software que ayude a mejorar vidas y que nos ayude a solucionar los problemas que nos impiden mejorar.',
+		'about-me.paragraph-3': 'En mi tiempo libre, defiendo los derechos de las personas LGBTQ+ y apoyo al feminismo, tengo ligeras crisis existenciales mientras desayuno, paso tiempo a solas leyendo o con amigos, y cómo un montón de galletitas en',
 
 		'experience.title': `Experiencia`,
 		'experience.intro': `Algunos proyectos notables en los que he trabajado y puestos que he ocupado.`,
@@ -84,12 +84,12 @@ const uiText: uiTextInterface = {
 		'experience.practicasprofesionales.title': 'Desarrolladora Django',
 		'experience.practicasprofesionales.date-started': 'Agosto 2023',
 		'experience.practicasprofesionales.date-finished': 'Marzo 2024',
-		'experience.practicasprofesionales.body': '',
+		'experience.practicasprofesionales.body': 'Mediante mi propia iniciativa y conocimiento, ayude a mi preparatoria a actualizar y desplegar un sistema para manejar las prácticas profesionales de sus estudiantes con compañías externas.',
 
 		'experience.ibm-internship.title': 'Becaria en IBM',
 		'experience.ibm-internship.date-started': 'Mayo 2024',
 		'experience.ibm-internship.date-finished': 'Junio 2024',
-		'experience.ibm-internship.body': '',
+		'experience.ibm-internship.body': 'Gracias a un programa escolar, forme parte de IBM por dos meses, aprendiendo su cultura y su forma de trabajar, y mejorando mi forma de relacionarme en un equipos',
 
 		'experience.technical-skills.title': 'Habilidades técnicas',
 		'experience.technical-skills.intro':
