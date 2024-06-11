@@ -75,9 +75,21 @@ const t = useTranslations(current_language)
 						})}
 					/>
 				</h2>
-				<p set:html={t('about-me.paragraph-1')} />
-				<p set:html={t('about-me.paragraph-2')} />
-				<p set:html={t('about-me.paragraph-3')} />
+				<p>
+					{t('about-me.paragraph-1')}
+				</p>
+				<p>
+					{t('about-me.paragraph-2')}
+				</p>
+				<p>
+					{t('about-me.paragraph-3')}
+					{' '}
+					<a
+						class="text-rose-400"
+						href="https://orteil.dashnet.org/cookieclicker/"
+						target="_blank">Cookie Clicker</a
+					> 🍪.
+				</p>
 			</div>
 		</div>
 	</div>
