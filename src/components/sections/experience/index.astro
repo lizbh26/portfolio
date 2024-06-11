@@ -1,0 +1,47 @@
+---
+import feather from 'feather-icons'
+import { getLangFromUrl, useTranslations } from '../../../i18n/languagePicker'
+
+import WorkHistory from './work-history.astro'
+import TechnicalSkills from './technical-skills.astro'
+import Resume from './resume.astro'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
+---
+
+<style>
+	h1,
+	h2 {
+		font-family: 'Salsa', cursive;
+		font-weight: bold;
+	}
+</style>
+<section id="experience" class="-mb-24 pt-32">
+	<div class="mb-5 flex flex-col items-center justify-center">
+		<div class="sm:mx-2 sm:w-5/6 lg:w-4/5">
+			<div class="flex w-full flex-col items-center justify-center">
+				<h2
+					class="mb-4 flex justify-center gap-2 text-4xl uppercase text-rose-400"
+				>
+					{t('experience.title')}
+					<span
+						class="flex items-center"
+						set:html={feather.icons.briefcase.toSvg({
+							class: 'text-rose-400 inline',
+						})}
+					/>
+				</h2>
+				<div class="flex flex-col gap-10 sm:gap-6 md:w-4/5">
+					<div class="flex flex-col gap-6 sm:flex-row">
+						<div class="md:w-2/3">
+							<WorkHistory />
+						</div>
+						<Resume />
+					</div>
+					<TechnicalSkills />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

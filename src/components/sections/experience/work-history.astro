@@ -1,0 +1,58 @@
+---
+import Accordion from './Accordion.astro'
+import { getLangFromUrl, useTranslations } from '../../../i18n/languagePicker'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
+---
+
+<div class="mx-2 flex h-fit flex-row" id="work-history">
+	<div id="fancy-line" class="flex flex-col items-center justify-center">
+		<div class="">
+			<div class="h-8 w-8 rounded-full border-4 border-rose-400"></div>
+		</div>
+		<div class="h-full w-1 rounded-b-md border-2 border-rose-400"></div>
+	</div>
+	<div class="ml-2">
+		<p class="text-gray-300">
+			{t('experience.intro')}
+		</p>
+		<div class="my-2 flex flex-col">
+			<Accordion
+				title={t('experience.practicasprofesionales.title')}
+				startDate={t('experience.practicasprofesionales.date-started')}
+				endDate={t('experience.practicasprofesionales.date-finished')}
+				skills={[
+					'Python',
+					'Django',
+					'MySQL',
+					'DigitalOcean',
+					'Apache Server',
+					'Agile',
+				]}
+			>
+				<p
+					class="text-justify"
+					set:html={t('experience.practicasprofesionales.body')}
+				/>
+			</Accordion>
+			<Accordion
+				title={t('experience.ibm-internship.title')}
+				startDate={t('experience.ibm-internship.date-started')}
+				endDate={t('experience.ibm-internship.date-finished')}
+				skills={[
+					'Agile',
+					'Scrum',
+					'Design Thinking',
+					'Github Enterprise',
+					'Jira',
+					'Docker',
+					'UI/UX',
+					'Soft Skills',
+				]}
+			>
+				<p set:html={t('experience.ibm-internship.body')} />
+			</Accordion>
+		</div>
+	</div>
+</div>
