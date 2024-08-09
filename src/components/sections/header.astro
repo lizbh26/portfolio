@@ -1,0 +1,35 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
+
+const current_language = getLangFromUrl(Astro.url)
+const t = useTranslations(current_language)
+---
+
+<style>
+	h1,
+	h2 {
+		font-family: 'Salsa', cursive;
+		font-weight: bold;
+	}
+</style>
+
+<header
+	class="fixed z-0 flex h-[90svh] w-full flex-col items-center justify-center bg-neutral-800 px-4 sm:px-10 md:px-16 md:pb-28 md:pt-40 lg:px-20"
+>
+	<h1 class="text-center text-4xl" set:html={t('header.welcome')} />
+	<p class="mb-5 text-center text-2xl" set:html={t('header.tagline')} />
+	<p class="text-center">{t('header.question')}</p>
+	<a
+		class="my-2 rounded bg-primary px-4 py-2 font-bold shadow transition hover:scale-105"
+		href="#contact-me">{t('header.cta')}</a
+	>
+</header>
+<div id="top" class="h-[80svh] bg-transparent md:h-[70svh]"></div>
+<img
+	src="/portfolio/img/header-separator.png"
+	class="relative z-20 hidden w-full md:block"
+/>
+<img
+	src="/portfolio/img/header-separator-mobile.png"
+	class="relative z-20 w-full md:hidden"
+/>
