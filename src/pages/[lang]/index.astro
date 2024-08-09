@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 
+import Header from '../../components/sections/header.astro'
 import AboutMe from '../../components/sections/about-me.astro'
 import Experience from '../../components/sections/experience/index.astro'
 import Work from '../../components/sections/work.astro'
@@ -13,10 +14,11 @@ export function getStaticPaths() {
 ---
 
 <Layout title="Ashley Lizbeth - Portfolio">
-	<div class="px-10">
+	<Header />
+	<div class="relative z-20 bg-background">
 		<AboutMe />
 		<Experience />
 		<ContactMe />
+		<Footer />
 	</div>
-	<Footer />
 </Layout>
