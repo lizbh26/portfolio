@@ -1,58 +1,50 @@
 ---
-import Accordion from './Accordion.astro'
 import { getLangFromUrl, useTranslations } from '../../../i18n/languagePicker'
 
+interface Props {
+	workID: 'practicasprofesionales' | 'ibm-internship'
+	skills: string[]
+}
+
+const { workID, skills } = Astro.props
 const current_language = getLangFromUrl(Astro.url)
 const t = useTranslations(current_language)
 ---
 
-<div class="mx-2 flex h-fit flex-row" id="work-history">
-	<div id="fancy-line" class="flex flex-col items-center justify-center">
-		<div class="">
-			<div class="h-8 w-8 rounded-full border-4 border-rose-400"></div>
-		</div>
-		<div class="h-full w-1 rounded-b-md border-2 border-rose-400"></div>
-	</div>
-	<div class="ml-2">
-		<p class="text-gray-300">
-			{t('experience.intro')}
+<div id={workID} style="display: none;">
+	<h3 class="text-center text-2xl" id={`${workID}-title`}>
+		{t(`experience.${workID}.title`)}
+	</h3>
+	<p class="text-center text-sm italic text-neutral-300">
+		{t(`experience.${workID}.date-started`)} - {
+			t(`experience.${workID}.date-finished`)
+		}
+	</p>
+	<span class="mb-6 mt-2 flex items-start justify-center text-center">
+		<img
+			class="inline-block w-6"
+			src="/portfolio/img/building.svg"
+			alt="employer"
+		/>
+		<p class="w-fit">
+			{t(`experience.${workID}.employer`)}
 		</p>
-		<div class="my-2 flex flex-col">
-			<Accordion
-				title={t('experience.practicasprofesionales.title')}
-				startDate={t('experience.practicasprofesionales.date-started')}
-				endDate={t('experience.practicasprofesionales.date-finished')}
-				skills={[
-					'Python',
-					'Django',
-					'MySQL',
-					'DigitalOcean',
-					'Apache Server',
-					'Agile',
-				]}
-			>
-				<p
-					class="text-justify"
-					set:html={t('experience.practicasprofesionales.body')}
-				/>
-			</Accordion>
-			<Accordion
-				title={t('experience.ibm-internship.title')}
-				startDate={t('experience.ibm-internship.date-started')}
-				endDate={t('experience.ibm-internship.date-finished')}
-				skills={[
-					'Agile',
-					'Scrum',
-					'Design Thinking',
-					'Github Enterprise',
-					'Jira',
-					'Docker',
-					'UI/UX',
-					'Soft Skills',
-				]}
-			>
-				<p set:html={t('experience.ibm-internship.body')} />
-			</Accordion>
+	</span>
+	<p>
+		{t(`experience.${workID}.body`)}
+	</p>
+	<div class="my-4">
+		<h4 class="text-lg">{t('experiece.skills.title')}:</h4>
+		<div
+			class="mt-2 flex flex-wrap justify-center gap-2 break-keep text-sm"
+		>
+			{
+				skills.map((skill) => (
+					<span class="rounded-full bg-primary px-2 py-1 ">
+						{skill}
+					</span>
+				))
+			}
 		</div>
 	</div>
 </div>

@@ -3,7 +3,6 @@ import feather from 'feather-icons'
 import { getLangFromUrl, useTranslations } from '../../../i18n/languagePicker'
 
 import WorkHistory from './work-history.astro'
-import TechnicalSkills from './technical-skills.astro'
 import Resume from './resume.astro'
 
 const current_language = getLangFromUrl(Astro.url)
@@ -16,32 +15,191 @@ const t = useTranslations(current_language)
 		font-family: 'Salsa', cursive;
 		font-weight: bold;
 	}
+	.carbon-bg {
+		background:
+			radial-gradient(black 15%, transparent 16%) 0 0,
+			radial-gradient(black 15%, transparent 16%) 8px 8px,
+			radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
+			radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px
+				9px;
+		background-color: #282828;
+		background-size: 16px 16px;
+	}
 </style>
-<section id="experience" class="-mb-24 pt-32">
-	<div class="mb-5 flex flex-col items-center justify-center">
-		<div class="sm:mx-2 sm:w-5/6 lg:w-4/5">
-			<div class="flex w-full flex-col items-center justify-center">
-				<h2
-					class="mb-4 flex justify-center gap-2 text-4xl uppercase text-rose-400"
+<div class="carbon-bg mt-20 bg-neutral-800">
+	<div
+		class="h-0 w-0 border-l-[100svw] border-t-[40px] border-solid border-transparent border-t-background"
+	>
+	</div>
+	<section
+		id="experience"
+		class="my-10 scroll-mt-32 px-10 sm:px-16 md:px-20 lg:px-32"
+	>
+		<h2
+			class="mb-2 border-b-2 border-secondary text-center text-3xl uppercase text-secondary md:mb-6"
+		>
+			{t('experience.title')}
+		</h2>
+		<div class="w-full">
+			<div class="grid-cols-3 grid-rows-2 text-center md:grid">
+				<div
+					id="history-dropdown"
+					class="relative col-span-1 row-span-1 flex flex-col items-center shadow"
 				>
-					{t('experience.title')}
-					<span
-						class="flex items-center"
-						set:html={feather.icons.briefcase.toSvg({
-							class: 'text-rose-400 inline',
-						})}
-					/>
-				</h2>
-				<div class="flex flex-col gap-10 sm:gap-6 md:w-4/5">
-					<div class="flex flex-col gap-6 sm:flex-row">
-						<div class="md:w-2/3">
-							<WorkHistory />
-						</div>
-						<Resume />
+					<button
+						id="history-dropdown-button"
+						class="relative flex w-3/4 justify-center rounded bg-primary px-7 py-1 min-[530px]:w-1/2 md:hidden"
+					>
+						<span id="history-dropdown-text"></span>
+						<span
+							class="absolute right-2 transition"
+							id="history-dropdown-arrow"
+							set:html={feather.icons['chevron-down'].toSvg()}
+						/>
+					</button>
+					<div
+						class="absolute top-8 flex max-h-0 w-3/4 flex-col overflow-hidden border-primary bg-background transition-all min-[530px]:w-1/2 md:relative md:max-h-max md:w-full md:overflow-scroll md:bg-transparent"
+						id="history-list-buttons"
+					>
+						<button
+							id="ibm-internship-button"
+							class="border-x-2 border-b-2 border-primary px-4 py-2 text-center transition hover:font-bold md:rounded-t md:border-2 md:border-b-0 md:text-start"
+							>{t('experience.ibm-internship.title')}</button
+						>
+						<button
+							id="practicasprofesionales-button"
+							class="rounded-b border-x-2 border-b-2 border-primary px-4 py-2 text-center transition hover:font-bold md:border-2 md:text-start"
+						>
+							{t('experience.practicasprofesionales.title')}
+						</button>
 					</div>
-					<TechnicalSkills />
+				</div>
+				<div
+					id="history-list"
+					class="col-span-2 row-span-2 my-8 md:my-0 md:px-8"
+				>
+					<WorkHistory
+						workID="ibm-internship"
+						skills={[
+							'Agile',
+							'Scrum',
+							'Design Thinking',
+							'Github Enterprise',
+							'Jira',
+							'Docker',
+							'UI/UX',
+						]}
+					/>
+					<WorkHistory
+						workID="practicasprofesionales"
+						skills={[
+							'Python',
+							'Django',
+							'MySQL',
+							'DigitalOcean',
+							'Apache Server',
+							'Agile',
+						]}
+					/>
+				</div>
+				<div
+					class="col-span-1 row-span-1 border-t-2 border-secondary pt-8 md:border-r-2"
+				>
+					<Resume />
 				</div>
 			</div>
 		</div>
+	</section>
+	<div
+		class="h-0 w-0 border-b-[40px] border-r-[100svw] border-solid border-transparent border-b-background"
+	>
 	</div>
-</section>
+</div>
+<script>
+	let selectedID = ''
+	let isDropdownOpen = false
+
+	function onHistorySelection(id: string) {
+		if (id === selectedID) {
+			closeDropdown()
+			return
+		}
+
+		hideAllHistories()
+		unhighlightAllButtons()
+
+		const selected = $(`#${id}`)
+		selected.delay(90).fadeIn({ queue: true })
+		selectedID = id
+
+		updateDropdownText()
+		closeDropdown()
+		highlightButtonOnDesktop(id)
+	}
+
+	function highlightButtonOnDesktop(id: string) {
+		const button = $(`#${id}-button`)
+		button.addClass('md:bg-primary')
+	}
+	function unhighlightAllButtons() {
+		$('#history-list-buttons')
+			.children()
+			.each((_i, element) => {
+				element.classList.remove('md:bg-primary')
+			})
+	}
+
+	function updateDropdownText() {
+		const selectedText = $(`#${selectedID}-title`).text()
+		$('#history-dropdown-text').text(selectedText)
+	}
+
+	function hideAllHistories() {
+		$('#history-list')
+			.children()
+			.each((_i, element) => {
+				if (element.style.display !== 'none') {
+					$(element).fadeOut({ duration: 100, queue: true })
+				}
+			})
+	}
+
+	function openDropdown() {
+		$('#history-list-buttons').removeClass('max-h-0').addClass('max-h-80')
+		$('#history-dropdown-arrow').addClass('rotate-180')
+		isDropdownOpen = true
+	}
+
+	function closeDropdown() {
+		$('#history-list-buttons').removeClass('max-h-80').addClass('max-h-0')
+		$('#history-dropdown-arrow').removeClass('rotate-180')
+		isDropdownOpen = false
+	}
+
+	$(() => {
+		$('#history-list-buttons')
+			.children()
+			.each((_index, element) => {
+				$(element).on('click', () => {
+					const historyID = element.id.split('-button')[0]
+					onHistorySelection(historyID)
+				})
+			})
+		$('#history-dropdown-button').on('click', (e) => {
+			if (isDropdownOpen) closeDropdown()
+			else openDropdown()
+		})
+
+		onHistorySelection('ibm-internship')
+
+		$(document).on('click', (e) => {
+			const dropdown = document.getElementById('history-dropdown')
+			if (
+				dropdown &&
+				!dropdown.contains(e.target as Node) &&
+				isDropdownOpen
+			)
+				closeDropdown()
+		})
+	})
+</script>
