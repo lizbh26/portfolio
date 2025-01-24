@@ -107,7 +107,7 @@ const uiText: uiTextInterface = {
 		'experience.practicasprofesionales.body':
 			'Mediante mi propia iniciativa y conocimiento, ayude a mi preparatoria a actualizar y desplegar un sistema para manejar las prácticas profesionales de sus estudiantes con compañías externas.',
 
-		'experience.ibm-internship.title': 'Becaria en IBM',
+		'experience.ibm-internship.title': 'Practicas profesionales en IBM',
 		'experience.ibm-internship.date-started': 'Mayo 2024',
 		'experience.ibm-internship.date-finished': 'Junio 2024',
 		'experience.ibm-internship.employer': 'IBM de México',
