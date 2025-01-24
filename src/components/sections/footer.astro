@@ -1,9 +1,5 @@
 ---
 import feather from 'feather-icons'
-import { getLangFromUrl, useTranslations } from '../../i18n/languagePicker'
-
-const current_language = getLangFromUrl(Astro.url)
-const t = useTranslations(current_language)
 ---
 
 <footer class="bg-neutral-800" id="footer">
@@ -18,15 +14,16 @@ const t = useTranslations(current_language)
 					set:html={feather.icons.github.toSvg()}
 				/>
 			</li>
-			<li
+			<!-- <li
 				class="flex h-10 w-10 items-center justify-center transition hover:text-rose-400"
 			>
+				NOTE: Out of order until I restore account
 				<a
 					href="https://www.linkedin.com/in/ashley-lizbeth/"
 					target="_blank"
 					set:html={feather.icons.linkedin.toSvg()}
 				/>
-			</li>
+			</li> -->
 			<li class="">
 				<a
 					href="https://profile.indeed.com/p/ashleyb-b36nw9s"
@@ -44,7 +41,7 @@ const t = useTranslations(current_language)
 		</ul>
 	</div>
 	<div class="pb-4 pt-8 text-center">
-		<p class="">Ashley Lizbeth @ 2024</p>
+		<p class="">Ashley Lizbeth @ 2025</p>
 		<p class="text-sm">Trans rights are humans rights</p>
 	</div>
 </footer>
