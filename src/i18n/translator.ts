@@ -1,4 +1,7 @@
 interface TranslatableText {
+	'page.title': string
+	'page.description': string
+
 	'header.welcome': string
 	'header.tagline': string
 	'header.question': string
@@ -41,7 +44,11 @@ interface uiTextInterface {
 
 const uiText: uiTextInterface = {
 	en: {
-		'header.welcome': `Hi! I'm Ashley :)`,
+		'page.title': 'Liz The Coder - Professional Software Developer',
+		'page.description':
+			'Portfolio of Elizabeth Barrera, Software Developer from Mexico',
+
+		'header.welcome': `Hi! I'm Elizabeth :)`,
 		'header.tagline': `A developer who <strong class="text-primary"> cares deeply </strong> about her user's needs`,
 		'header.question': 'Got any ideas you wanna bring into life?',
 		'header.cta': 'Hit me up!',
@@ -82,7 +89,10 @@ const uiText: uiTextInterface = {
 		'contact-me.subtitle-2': 'so feel free to drop in and say hello!',
 	},
 	es: {
-		'header.welcome': `Hola! Soy Ashley :)`,
+		'page.title': 'Liz The Coder - Desarrolladora Profesional de Software',
+		'page.description':
+			'Portafolio de Elizabeth Barrera, desarrolladora de software de Guadalajara',
+		'header.welcome': `Hola! Soy Elizabeth :)`,
 		'header.tagline': `Una desarrolladora que se preocupa <strong class="text-primary"> inmensamente </strong> por las necesidades de sus usuarios`,
 		'header.question': '¿Tienes alguna idea que quieres traer a la vida?',
 		'header.cta': '¡Trabajemos juntos!',

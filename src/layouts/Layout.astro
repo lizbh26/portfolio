@@ -1,12 +1,7 @@
 ---
-interface Props {
-	title: string
-}
-
-import { getLangFromUrl } from '../i18n/languagePicker'
+import { getLangFromUrl, useTranslations } from '../i18n/languagePicker'
 const lang = getLangFromUrl(Astro.url)
-
-const { title } = Astro.props
+const t = useTranslations(lang)
 
 import Navbar from '../components/Navbar/index.astro'
 ---
@@ -14,10 +9,11 @@ import Navbar from '../components/Navbar/index.astro'
 <html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/portfolio/favicon.png" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{t('page.title')}</title>
+		<meta name="description" content={t('page.description')} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
