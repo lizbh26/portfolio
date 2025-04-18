@@ -2,7 +2,7 @@ import { default_language, language_list } from './languages'
 import uiText from './translator'
 
 export function getLangFromUrl(url: URL) {
-	const [_domain, _portfolio, lang] = url.pathname.split('/')
+	const [_domain, lang] = url.pathname.split('/')
 	if (lang in language_list) return lang as keyof typeof language_list
 	return default_language
 }
