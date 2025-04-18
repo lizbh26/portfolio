@@ -1,13 +1,15 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
 
 import svelte from '@astrojs/svelte'
+
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://lizthecoder.me',
-	integrations: [tailwind(), svelte()],
+	integrations: [svelte()],
 	trailingSlash: 'always',
+
 	i18n: {
 		defaultLocale: 'en',
 		locales: ['en', 'es'],
@@ -15,4 +17,9 @@ export default defineConfig({
 			prefixDefaultLocale: true,
 		},
 	},
+
+	vite: {
+		plugins: [tailwindcss()],
+	},
 })
+
