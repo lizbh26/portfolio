@@ -12,7 +12,7 @@ const t = useTranslations(current_language)
 	</h3>
 	<p>{t('experience.resume.subtitle')}</p>
 	<a
-		href={`/portfolio/${current_language === 'en' ? 'resume' : 'cv'}.pdf`}
+		href={`/${current_language === 'en' ? 'resume' : 'cv'}.pdf`}
 		target="_blank"
 		class="mt-6 flex items-center justify-center gap-2 rounded-lg border-2 border-primary bg-primary px-4 py-1 font-bold transition hover:scale-105 hover:bg-primary md:bg-transparent"
 	>
