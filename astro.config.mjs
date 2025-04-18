@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'http://lizthecoder.me',
+	site: 'http://www.lizthecoder.me',
 	integrations: [svelte()],
 	trailingSlash: 'always',
 
