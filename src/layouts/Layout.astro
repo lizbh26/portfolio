@@ -4,6 +4,8 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
 import Navbar from '../components/Navbar/index.astro'
+
+import '../styles/global.css'
 ---
 
 <html lang={lang} class="scroll-smooth">
@@ -23,7 +25,7 @@ import Navbar from '../components/Navbar/index.astro'
 		<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"
 		></script>
 	</head>
-	<body class="overflow-x-hidden bg-background text-white">
+	<body class="bg-background overflow-x-hidden text-white">
 		<Navbar />
 		<slot />
 	</body>
